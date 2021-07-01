@@ -18,6 +18,10 @@ a {
   margin: 0 auto;
 }
 
+img {
+  max-width: 100%;
+}
+
 /* Variables  */
 :root {
   --primary: #333;
@@ -26,6 +30,7 @@ a {
 /* common */
 .d-flex {
   display: flex;
+  gap: 1em;
 }
 .space-between {
   justify-content: space-between;
@@ -71,4 +76,15 @@ a {
 
 .social__link {
   padding-right: 0.5em;
+}
+
+/* Shop item */
+.shop-item {
+  text-align: center;
+}
+
+.shop-item .item-title {
+  font-size: 1em;
+  font-weight: normal;
+  margin-bottom: 0.2em;
 }

@@ -4,8 +4,9 @@ import ShopItem from './shopItem';
 class ShopList extends Component {
   render() {
     return (
-      <div className="shop-list">
-        shop list
+      <div className="shop-list d-flex">
+        <ShopItem />
+        <ShopItem />
         <ShopItem />
       </div>
     );
