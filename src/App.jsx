@@ -4,6 +4,7 @@ import './App.css';
 import HeaderX from './components/headerX';
 import Home from './pages/home';
 import Shop from './pages/shop';
+import 'font-awesome/css/font-awesome.css';
 
 class App extends Component {
   state = {

@@ -18,6 +18,11 @@ a {
   margin: 0 auto;
 }
 
+/* Variables  */
+:root {
+  --primary: #333;
+  --secondary: snow;
+}
 /* common */
 .d-flex {
   display: flex;
@@ -28,8 +33,8 @@ a {
 
 /* Header  */
 .header {
-  background-color: #333;
-  color: snow;
+  background-color: var(--primary);
+  color: var(--secondary);
 }
 
 .nav-link-item {
@@ -39,4 +44,22 @@ a {
 
 .logo {
   font-size: 1.5em;
+}
+
+/* Shop page */
+
+/* --Categories */
+.categories ul {
+  margin-top: 2em;
+  list-style: none;
+  padding-left: 0;
+}
+
+.categories .category-item {
+  padding: 0.3em 0;
+  border-bottom: 1px solid var(--primary);
+}
+
+.categories .category-item:first-child {
+  border-top: 1px solid --primary;
 }
