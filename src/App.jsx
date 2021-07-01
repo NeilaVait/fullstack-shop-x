@@ -33,6 +33,7 @@ class App extends Component {
         <HeaderX navLinks={this.state.navLinks} />
         <div className="container">
           <Switch>
+            {/* kai reikia perduoti props i route  mes tai darom su sekancia sintaxe */}
             <Route path="/shop" render={(props) => <Shop shop={this.state.shop} {...props} />} />
             <Route exact path="/" component={Home} />
           </Switch>

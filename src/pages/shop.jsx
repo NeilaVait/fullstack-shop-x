@@ -4,7 +4,10 @@ class Shop extends Component {
   render() {
     return (
       <div className="shop-page">
-        <h1>I am a shop</h1>
+        <aside className="categories-aside">
+          <div className="categories"></div>
+          <div className="social"></div>
+        </aside>
       </div>
     );
   }
