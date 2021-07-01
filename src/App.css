@@ -40,6 +40,7 @@ img {
 .header {
   background-color: var(--primary);
   color: var(--secondary);
+  margin-bottom: 2em;
 }
 
 .nav-link-item {
@@ -81,6 +82,7 @@ img {
 /* Shop item */
 .shop-item {
   text-align: center;
+  width: 33%;
 }
 
 .shop-item .item-title {
