@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ShopList from '../components/shopList';
 
 class Shop extends Component {
   render() {
@@ -29,17 +30,14 @@ class Shop extends Component {
             ))}
           </div>
         </aside>
-        <main className="shop-list"></main>
+        <main>
+          <ShopList />
+        </main>
       </div>
     );
   }
 }
 
 export default Shop;
-// susikurti komponentus shop-list ir shop-item
-
-// isitaraukti shop-list i shop
-
-// isitraukti shop-item i shop-list
 
 // shop-item atvaizduoti 1 preke panasiai kaip yra pavyzdyje
