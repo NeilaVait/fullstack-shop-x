@@ -85,6 +85,11 @@ img {
 
 .social__link {
   padding-right: 0.5em;
+  font-size: 1.2em;
+}
+.social__link .sup {
+  font-size: 0.7em;
+  margin-left: 3px;
 }
 
 /* Shop item */
