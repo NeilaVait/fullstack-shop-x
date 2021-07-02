@@ -4,4 +4,13 @@
   border: none;
   padding: 0.5em 2em;
   font-size: 1.3em;
+  min-width: 200px;
+}
+.outline {
+  background-color: snow;
+  color: #333;
+  border: 1px solid #333;
+  padding: 0.5em 2em;
+  font-size: 1.3em;
+  min-width: 200px;
 }
