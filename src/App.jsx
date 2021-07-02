@@ -5,6 +5,7 @@ import HeaderX from './components/headerX';
 import Home from './pages/home';
 import Shop from './pages/shop';
 import 'font-awesome/css/font-awesome.css';
+import Footer from './components/footer';
 
 class App extends Component {
   state = {
@@ -69,6 +70,7 @@ class App extends Component {
             <Route exact path="/" component={Home} />
           </Switch>
         </div>
+        <Footer />
       </div>
     );
   }
