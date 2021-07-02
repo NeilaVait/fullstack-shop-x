@@ -28,6 +28,7 @@ class Shop extends Component {
               <ShopSingleItem
                 item={items.find((i) => i._id === 1)}
                 socialLinksData={socialLinksData}
+                items={items}
                 {...props}
               />
             )}

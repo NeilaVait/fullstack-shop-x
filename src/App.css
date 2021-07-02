@@ -44,6 +44,12 @@ img {
   flex-wrap: wrap;
 }
 
+.hr {
+  height: 1px;
+  background-color: rgb(220, 220, 220);
+  margin: 1.5em 0;
+}
+
 /* Header  */
 .header {
   background-color: var(--primary);
@@ -133,4 +139,16 @@ img {
 
 .single__item-info-part Button:last-of-type {
   margin-bottom: 3em;
+}
+
+/* you-may-like */
+
+.you-may-like .shop-item img {
+  height: 150px;
+}
+
+.you-may-like .title {
+  font-weight: normal;
+  font-size: 1.2em;
+  margin-bottom: 1em;
 }

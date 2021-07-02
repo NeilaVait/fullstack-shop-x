@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Button from './common/button/button';
 import SocialLinks from './common/socialLinks';
+import YouMayAlsoLike from './youMayAlsoLike';
 
 class ShopSingleItem extends Component {
   constructor() {
@@ -29,7 +30,7 @@ class ShopSingleItem extends Component {
   };
 
   render() {
-    const { socialLinksData, item } = this.props;
+    const { socialLinksData, item, items } = this.props;
     return (
       <div className="single-item ">
         <div className="d-flex">
@@ -83,9 +84,24 @@ class ShopSingleItem extends Component {
           comfortable fit. Our Flat Peak cap is finished off with an SPCC metal clip label, an SPCC
           woven label, twill sweatband and the tonal embroidered eyelets ensure ventilation.
         </p>
+        <YouMayAlsoLike relatedItems={items} />
       </div>
     );
   }
 }
 
 export default ShopSingleItem;
+
+// YouMayAlsoLike komponentas sukuriam komponenta
+
+// itraukiam i singleItem componenta
+
+// viduje atvaizduoja viena eile ShopItem componentus
+
+// nuododa veikia taip pat kaip ShopList
+
+// footer componentas. pasirasyti jsx
+
+// footer css
+
+// footer responsive
