@@ -9,11 +9,15 @@ class ShopSingleItem extends Component {
     this.state = {
       mainImage: '',
       images: [],
+      currentItemId: '',
+      currentItem: {},
     };
   }
 
   componentDidMount() {
-    const { images, image } = this.props.item;
+    const currentItemId = +this.props.match.params.id;
+    const item = this.props.items.find((i) => i._id === currentItemId);
+    const { images, image } = item;
     const imagesRequired = images.map(
       (imgNo) => require(`../static/shop/${image}${imgNo}.jpg`).default
     );
@@ -22,7 +26,12 @@ class ShopSingleItem extends Component {
     // atvaozduoti main image componente
     // pakeisti main image su paspaudimu ant nuotraukos
     // padaryti kad images butu nedidli ir tilptu 3 po nuotrauka
-    this.setState({ images: imagesRequired, mainImage: imagesRequired[2] });
+    this.setState({
+      images: imagesRequired,
+      mainImage: imagesRequired[2],
+      currentItemId,
+      currentItem: item,
+    });
   }
 
   handleMainImage = (img) => {
@@ -30,7 +39,8 @@ class ShopSingleItem extends Component {
   };
 
   render() {
-    const { socialLinksData, item, items } = this.props;
+    const { socialLinksData, items } = this.props;
+    const item = this.state.currentItem;
     return (
       <div className="single-item ">
         <div className="d-flex">
