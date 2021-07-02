@@ -20,29 +20,36 @@ class ShopSingleItem extends Component {
     // nustatyti default image
     // atvaozduoti main image componente
     // pakeisti main image su paspaudimu ant nuotraukos
-    this.setState({ images: imagesRequired });
+    // padaryti kad images butu nedidli ir tilptu 3 po nuotrauka
+    this.setState({ images: imagesRequired, mainImage: imagesRequired[2] });
   }
 
+  handleMainImage = (img) => {
+    this.setState({ mainImage: img });
+  };
+
   render() {
-    const { socialLinksData } = this.props;
+    const { socialLinksData, item } = this.props;
     return (
       <div className="single-item ">
         <div className="d-flex">
           <div className="single__images-part w-50">
-            <img
-              className="single__main-image"
-              src="https://placeimg.com/640/480/people"
-              alt="main item"
-            />
+            <img className="single__main-image" src={this.state.mainImage} alt="main item" />
             <div className="single__photos d-flex flex-wrap">
               {this.state.images.map((img) => (
-                <img key={img} src={img} alt="" />
+                <img
+                  onClick={() => this.handleMainImage(img)}
+                  key={img}
+                  className="single__item-image"
+                  src={img}
+                  alt=""
+                />
               ))}
             </div>
           </div>
           <div className="single__item-info-part">
-            <h2 className="item-info__title">title</h2>
-            <p className="item-info__price">300 eur</p>
+            <h2 className="item-info__title">{item.title}</h2>
+            <p className="item-info__price">{item.price} eur</p>
             <div className="item-info__options d-flex ">
               <div>
                 <label htmlFor="colors">Colors</label>
@@ -64,6 +71,7 @@ class ShopSingleItem extends Component {
               </div>
             </div>
             <Button outline>Add to cart</Button>
+            <br />
             <Button>Buy it now</Button>
             <SocialLinks titles socialLink={socialLinksData} />
           </div>
