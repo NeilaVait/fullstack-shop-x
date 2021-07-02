@@ -3,6 +3,26 @@ import Button from './common/button/button';
 import SocialLinks from './common/socialLinks';
 
 class ShopSingleItem extends Component {
+  constructor() {
+    super();
+    this.state = {
+      mainImage: '',
+      images: [],
+    };
+  }
+
+  componentDidMount() {
+    const { images, image } = this.props.item;
+    const imagesRequired = images.map(
+      (imgNo) => require(`../static/shop/${image}${imgNo}.jpg`).default
+    );
+    // const images = require(`../static/shop/${image}3.jpg`).default
+    // nustatyti default image
+    // atvaozduoti main image componente
+    // pakeisti main image su paspaudimu ant nuotraukos
+    this.setState({ images: imagesRequired });
+  }
+
   render() {
     const { socialLinksData } = this.props;
     return (
@@ -15,8 +35,8 @@ class ShopSingleItem extends Component {
               alt="main item"
             />
             <div className="single__photos d-flex flex-wrap">
-              {[1, 2, 3].map((img) => (
-                <img key={img} src="https://placeimg.com/100/100/people" alt="" />
+              {this.state.images.map((img) => (
+                <img key={img} src={img} alt="" />
               ))}
             </div>
           </div>

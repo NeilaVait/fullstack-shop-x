@@ -34,6 +34,7 @@ class App extends Component {
           image: 'acc_hat_01_',
           color: 'green',
           size: 'normal',
+          images: [1, 2, 3, 4, 5],
         },
         {
           _id: 2,
@@ -42,6 +43,7 @@ class App extends Component {
           image: 'acc_jacket_01_',
           color: 'navy',
           size: 'normal',
+          images: [1, 2],
         },
         {
           _id: 3,
@@ -50,6 +52,7 @@ class App extends Component {
           image: 'denim_01_',
           color: 'indigo',
           size: 'normal',
+          images: [1, 2, 3],
         },
       ],
     },
