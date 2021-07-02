@@ -36,6 +36,14 @@ img {
   justify-content: space-between;
 }
 
+.w-50 {
+  width: 50%;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 /* Header  */
 .header {
   background-color: var(--primary);
