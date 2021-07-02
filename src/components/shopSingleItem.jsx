@@ -17,10 +17,12 @@ class ShopSingleItem extends Component {
   componentDidMount() {
     const currentItemId = +this.props.match.params.id;
     const item = this.props.items.find((i) => i._id === currentItemId);
+
     const { images, image } = item;
     const imagesRequired = images.map(
       (imgNo) => require(`../static/shop/${image}${imgNo}.jpg`).default
     );
+
     // const images = require(`../static/shop/${image}3.jpg`).default
     // nustatyti default image
     // atvaozduoti main image componente
@@ -29,8 +31,6 @@ class ShopSingleItem extends Component {
     this.setState({
       images: imagesRequired,
       mainImage: imagesRequired[2],
-      currentItemId,
-      currentItem: item,
     });
   }
 
@@ -40,7 +40,8 @@ class ShopSingleItem extends Component {
 
   render() {
     const { socialLinksData, items } = this.props;
-    const item = this.state.currentItem;
+    const currentItemId = +this.props.match.params.id;
+    const item = this.props.items.find((i) => i._id === currentItemId);
     return (
       <div className="single-item ">
         <div className="d-flex">
@@ -101,17 +102,3 @@ class ShopSingleItem extends Component {
 }
 
 export default ShopSingleItem;
-
-// YouMayAlsoLike komponentas sukuriam komponenta
-
-// itraukiam i singleItem componenta
-
-// viduje atvaizduoja viena eile ShopItem componentus
-
-// nuododa veikia taip pat kaip ShopList
-
-// footer componentas. pasirasyti jsx
-
-// footer css
-
-// footer responsive

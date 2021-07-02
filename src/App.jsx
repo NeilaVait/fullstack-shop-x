@@ -35,6 +35,7 @@ class App extends Component {
           color: 'green',
           size: 'normal',
           images: [1, 2, 3, 4, 5],
+          sku: 'hat_01',
         },
         {
           _id: 2,
@@ -43,7 +44,7 @@ class App extends Component {
           image: 'acc_jacket_01_',
           color: 'navy',
           size: 'normal',
-          images: [1, 2],
+          images: [1, 2, 3],
         },
         {
           _id: 3,
