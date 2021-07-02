@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import ShopList from '../components/shopList';
 import ShopSingleItem from '../components/shopSingleItem';
 import { Route, Switch } from 'react-router';
+import SocialLinks from '../components/common/socialLinks';
 
 class Shop extends Component {
   render() {
-    const { socialLink, shopCategories, items } = this.props.shop;
+    const { socialLinksData, shopCategories, items } = this.props.shop;
     return (
       <div className="shop-page d-flex">
         <aside className="categories-aside">
@@ -18,19 +19,7 @@ class Shop extends Component {
               ))}
             </ul>
           </div>
-          <div className="social">
-            {socialLink.map((item) => (
-              <a
-                key={item.to}
-                href={item.to}
-                target="_blank"
-                rel="noreferrer"
-                className="social__link"
-              >
-                <i className={item.icon}></i>
-              </a>
-            ))}
-          </div>
+          <SocialLinks socialLink={socialLinksData} />
         </aside>
         <main>
           <Route path="/shop/item/1" render={(props) => <ShopSingleItem {...props} />} />
