@@ -34,6 +34,10 @@ class ShopSingleItem extends Component {
     });
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    console.log('update');
+  }
+
   handleMainImage = (img) => {
     this.setState({ mainImage: img });
   };
