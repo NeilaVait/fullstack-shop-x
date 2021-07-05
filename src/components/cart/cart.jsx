@@ -11,7 +11,7 @@ class Cart extends Component {
     return (
       <div>
         <div className="cartList">
-          <CartList />
+          <CartList cartItems={this.props.cartItems} />
         </div>
         <div className="d-flex">
           <div className="cart__instructions">

@@ -7,7 +7,12 @@ class CartItem extends Component {
   handleQty = ({ target }) => {
     this.setState({ qty: target.value });
   };
+  componentDidMount() {
+    const { image, quantity } = this.props.item;
+    this.setState({ qty: quantity });
+  }
   render() {
+    const { price, image, title, color, size } = this.props.item;
     return (
       <div className="cart-item d-flex">
         <div className="item-preview d-flex cart-col first">
@@ -16,15 +21,17 @@ class CartItem extends Component {
           </Link>
           <div className="order-item-info">
             <Link to="/">
-              <h4>title</h4>
+              <h4>{title}</h4>
             </Link>
-            <p>color / size</p>
+            <p>
+              {color} / {size}
+            </p>
             <button>remove</button>
           </div>
         </div>
         <div className="cart-col">
           <h3 className="d-upto-800">Price</h3>
-          <h3 className="price">1000 eur</h3>
+          <h3 className="price">{price} eur</h3>
         </div>
         <div className="cart-col">
           <h3 className="d-upto-800">Quantity</h3>
