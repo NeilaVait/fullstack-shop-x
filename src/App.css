@@ -214,3 +214,39 @@ textarea:focus-visible {
 .cart-info Button {
   margin-bottom: 0.5em;
 }
+
+.cart-columns h3:first-of-type {
+  flex-grow: 1;
+}
+.cart-item div:first-of-type {
+  flex-grow: 1;
+}
+
+.order-item-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.order-item-info h4 {
+  font-size: 1.2em;
+}
+
+.cart-qty {
+  width: 3em;
+}
+
+.cart-columns {
+  margin-bottom: 1.5em;
+}
+
+/* cart table like columns */
+.cart-col {
+  width: 13%;
+  font-weight: bold;
+  text-align: right;
+}
+.cart-col.first {
+  width: auto;
+  text-align: left;
+}
