@@ -66,12 +66,14 @@ h6 {
   display: block;
 }
 
-input {
+input,
+textarea {
   background-color: lightgray;
   padding: 0.5em 0.2em;
   border: 1px solid lightgray;
 }
-input:focus-visible {
+input:focus-visible,
+textarea:focus-visible {
   outline: none;
   border: 1px solid var(--primary);
 }
@@ -195,4 +197,20 @@ input:focus-visible {
 }
 .footer__input-group input {
   flex-grow: 1;
+}
+
+/* Cart  */
+.cart-info {
+  text-align: right;
+}
+.cart__title {
+  margin-bottom: 0.6em;
+}
+.cart-info i {
+  margin-bottom: 1.6em;
+  display: inline-block;
+}
+
+.cart-info Button {
+  margin-bottom: 0.5em;
 }

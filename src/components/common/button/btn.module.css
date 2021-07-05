@@ -5,6 +5,8 @@
   padding: 0.5em 2em;
   font-size: 1.3em;
   min-width: 200px;
+  text-transform: uppercase;
+  cursor: pointer;
 }
 .button.outline {
   background-color: snow;
