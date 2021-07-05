@@ -8,13 +8,29 @@ class CartItem extends Component {
     image: '',
     total: 0,
   };
+
+  getTotal() {
+    return this.state.qty * this.props.item.price;
+  }
+
   handleQty = ({ target }) => {
     this.setState({ qty: target.value });
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.qty !== this.state.qty) {
+      this.setState({ total: this.getTotal() });
+    }
+  }
+
   componentDidMount() {
     const { image, quantity } = this.props.item;
+    // dynamic import
+    // import(`../../static/shop/${image}1.jpg`).then((img) => {
+    //   console.log(img.default);
+    // });
     const imgImported = require(`../../static/shop/${image}1.jpg`).default;
-    this.setState({ qty: quantity, image: imgImported });
+    this.setState({ qty: quantity, image: imgImported, total: this.getTotal() });
   }
   render() {
     const { price, title, color, size } = this.props.item;
@@ -49,7 +65,7 @@ class CartItem extends Component {
         </div>
         <div className="cart-col">
           <h3 className="d-upto-800">Total</h3>
-          <h3 className="price-total">1000 eur</h3>
+          <h3 className="price-total">{this.state.total} eur</h3>
         </div>
       </div>
     );

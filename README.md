@@ -27,3 +27,9 @@
 1. // remove cart turetu istrinti item is cart.
 
 1. // padaryti kad veiktu quantity kuris padidina ir pamazina kiekti ir kaina sureguoja atatinkamai
+
+// handleTotal metodas cart.jsx
+
+// galimybe ivygdyti handleTotal is cartItem atsiuncian suma
+
+// cartItem atskiras metodas kuris grazina total suma
