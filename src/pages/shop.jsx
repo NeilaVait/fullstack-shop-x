@@ -6,7 +6,7 @@ import SocialLinks from '../components/common/socialLinks';
 import Cart from '../components/cart/cart';
 class Shop extends Component {
   render() {
-    const { socialLinksData, shopCategories, items } = this.props.shop;
+    const { socialLinksData, shopCategories, items, cart } = this.props.shop;
     return (
       <div className="shop-page d-flex">
         <aside className="categories-aside">
@@ -33,7 +33,7 @@ class Shop extends Component {
               />
             )}
           />
-          <Route exact path="/shop/cart" render={(props) => <Cart items={{}} {...props} />} />
+          <Route exact path="/shop/cart" render={(props) => <Cart cartItems={cart} {...props} />} />
           <Route exact path="/shop" render={(props) => <ShopList items={items} {...props} />} />
         </main>
       </div>

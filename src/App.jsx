@@ -57,6 +57,28 @@ class App extends Component {
           images: [1, 2, 3],
         },
       ],
+      cart: [
+        {
+          _id: 1,
+          title: 'Green hat',
+          price: 99.99,
+          image: 'acc_hat_01_',
+          color: 'green',
+          size: 'normal',
+          sku: 'hat_01',
+          quantity: 1,
+        },
+        {
+          _id: 2,
+          title: 'Feather Slim Fit Denim Jeans',
+          price: 1299.95,
+          image: 'denim_01_',
+          color: 'indigo',
+          size: 'normal',
+          sku: '01',
+          quantity: 2,
+        },
+      ],
     },
   };
   render() {
