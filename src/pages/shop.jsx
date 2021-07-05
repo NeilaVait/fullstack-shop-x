@@ -3,7 +3,7 @@ import ShopList from '../components/shopList';
 import ShopSingleItem from '../components/shopSingleItem';
 import { Route, Switch } from 'react-router';
 import SocialLinks from '../components/common/socialLinks';
-
+import Cart from '../components/cart';
 class Shop extends Component {
   render() {
     const { socialLinksData, shopCategories, items } = this.props.shop;
@@ -33,6 +33,7 @@ class Shop extends Component {
               />
             )}
           />
+          <Route exact path="/shop/cart" render={(props) => <Cart items={{}} {...props} />} />
           <Route exact path="/shop" render={(props) => <ShopList items={items} {...props} />} />
         </main>
       </div>
