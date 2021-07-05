@@ -20,7 +20,7 @@ const Footer = (props) => {
           <p>Promotions, new products and sales. Directly to your inbox</p>
           <div className="footer__input-group">
             <input type="text" placeholder="Your Email" />
-            <Button>Subscibe</Button>
+            <Button size="medium">Subscibe</Button>
           </div>
         </div>
       </div>
