@@ -23,9 +23,11 @@ class CartItem extends Component {
           </div>
         </div>
         <div className="cart-col">
+          <h3 className="d-upto-800">Price</h3>
           <h3 className="price">1000 eur</h3>
         </div>
         <div className="cart-col">
+          <h3 className="d-upto-800">Quantity</h3>
           <input
             className="cart-qty"
             type="number"
@@ -34,6 +36,7 @@ class CartItem extends Component {
           />
         </div>
         <div className="cart-col">
+          <h3 className="d-upto-800">Total</h3>
           <h3 className="price-total">1000 eur</h3>
         </div>
       </div>
