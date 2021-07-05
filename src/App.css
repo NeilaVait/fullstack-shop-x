@@ -11,15 +11,27 @@
 a {
   text-decoration: none;
   color: inherit;
+  display: inline-block;
 }
 
 .container {
+  padding-left: 1em;
+  padding-right: 1em;
   max-width: 1000px;
   margin: 0 auto;
 }
 
 img {
   max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
 }
 
 /* Variables  */
@@ -48,6 +60,16 @@ img {
   height: 1px;
   background-color: rgb(220, 220, 220);
   margin: 1.5em 0;
+}
+
+.d-block {
+  display: block;
+}
+
+input {
+  background-color: lightgray;
+  padding: 0.5em 0.2em;
+  border: 1px solid lightgray;
 }
 
 /* Header  */
@@ -151,4 +173,14 @@ img {
   font-weight: normal;
   font-size: 1.2em;
   margin-bottom: 1em;
+}
+
+/* Footer */
+
+.footer__title {
+  font-size: 1.2em;
+  margin-bottom: 0.5em;
+}
+.footer__nav-link {
+  line-height: 1.5;
 }
