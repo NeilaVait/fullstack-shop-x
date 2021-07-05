@@ -230,6 +230,7 @@ textarea:focus-visible {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-start;
 }
 
 .order-item-info h4 {
