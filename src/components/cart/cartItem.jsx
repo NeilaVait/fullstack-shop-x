@@ -5,21 +5,24 @@ import Button from '../common/button/button';
 class CartItem extends Component {
   state = {
     qty: 1,
+    image: '',
+    total: 0,
   };
   handleQty = ({ target }) => {
     this.setState({ qty: target.value });
   };
   componentDidMount() {
     const { image, quantity } = this.props.item;
-    this.setState({ qty: quantity });
+    const imgImported = require(`../../static/shop/${image}1.jpg`).default;
+    this.setState({ qty: quantity, image: imgImported });
   }
   render() {
-    const { price, image, title, color, size } = this.props.item;
+    const { price, title, color, size } = this.props.item;
     return (
       <div className="cart-item d-flex">
         <div className="item-preview d-flex cart-col first">
           <Link to="/">
-            <img src="https://placeimg.com/150/100/people" alt="sdsds" />
+            <img src={this.state.image} alt="sdsds" />
           </Link>
           <div className="order-item-info">
             <Link to="/">

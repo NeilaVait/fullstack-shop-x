@@ -245,6 +245,10 @@ textarea:focus-visible {
   margin-bottom: 1.5em;
 }
 
+.item-preview img {
+  max-height: 125px;
+}
+
 /* cart table like columns */
 .cart-col {
   width: 13%;

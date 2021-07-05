@@ -28,5 +28,8 @@
 }
 
 .button:hover {
-  color: rgb(74, 74, 74);
+  color: rgb(106, 106, 106);
+}
+.button.outline:hover {
+  color: rgb(203, 203, 203);
 }
