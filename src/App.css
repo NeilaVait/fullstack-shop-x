@@ -75,6 +75,10 @@ h6 {
   margin: 1.5em 0;
 }
 
+.pos-rel {
+  position: relative;
+}
+
 .d-block {
   display: block;
 }
@@ -109,8 +113,6 @@ textarea:focus-visible {
 .logo {
   font-size: 1.5em;
 }
-
-/* Shop page */
 
 /* search cart */
 
@@ -152,6 +154,22 @@ textarea:focus-visible {
 .social__link .sup {
   font-size: 0.7em;
   margin-left: 3px;
+}
+/* shop page */
+
+.sale {
+  background-color: tomato;
+  height: 55px;
+  width: 55px;
+  display: block;
+  text-align: center;
+  line-height: 55px;
+  border-radius: 50%;
+  font-size: 13px;
+  color: #fff;
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }
 
 /* Shop item */
