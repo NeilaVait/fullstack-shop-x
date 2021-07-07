@@ -14,7 +14,7 @@ class CartItem extends Component {
   }
 
   handleQty = ({ target }) => {
-    this.setState({ qty: target.value });
+    target.value >= 0 && this.setState({ qty: target.value });
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -52,20 +52,15 @@ class CartItem extends Component {
         </div>
         <div className="cart-col">
           <h3 className="d-upto-800">Price</h3>
-          <h3 className="price">{price} eur</h3>
+          <h3 className="price">{+price.toFixed(2)} eur</h3>
         </div>
         <div className="cart-col">
           <h3 className="d-upto-800">Quantity</h3>
-          <input
-            className="cart-qty"
-            type="number"
-            value={this.state.qty}
-            onChange={this.handleQty}
-          />
+          <input className="cart-qty" type="number" value={this.state.qty} onChange={this.handleQty} />
         </div>
         <div className="cart-col">
           <h3 className="d-upto-800">Total</h3>
-          <h3 className="price-total">{this.state.total} eur</h3>
+          <h3 className="price-total">{+this.state.total.toFixed(2)} eur</h3>
         </div>
       </div>
     );
