@@ -155,6 +155,7 @@ textarea:focus-visible {
   font-size: 0.7em;
   margin-left: 3px;
 }
+
 /* shop page */
 
 .sale {
@@ -172,10 +173,25 @@ textarea:focus-visible {
   right: 5px;
 }
 
+.shop-item img {
+  max-height: 200px;
+}
+
+.shop-items-part {
+  flex-grow: 1;
+}
+
+/* shop-list */
+
+.shop-list {
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
 /* Shop item */
 .shop-item {
   text-align: center;
-  width: 33%;
+  width: 31%;
 }
 
 .shop-item .item-title {

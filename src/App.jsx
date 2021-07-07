@@ -20,7 +20,7 @@ class App extends Component {
         { _id: 2, title: 'Denim' },
         { _id: 3, title: 'Footwear' },
         { _id: 4, title: 'Jeans' },
-        { _id: 5, title: 'T-Shirts' },
+        { _id: 5, title: 'Jackets' },
       ],
       socialLinksData: [
         { to: 'https://www.facebook.com', icon: 'fa fa-facebook', title: 'share' },
@@ -38,6 +38,7 @@ class App extends Component {
           size: 'normal',
           images: [1, 2, 3, 4, 5],
           sku: 'hat_01',
+          category: 'accessories',
         },
         {
           _id: 2,
@@ -47,6 +48,7 @@ class App extends Component {
           color: 'navy',
           size: 'normal',
           images: [1, 2, 3],
+          category: 'jackets',
         },
         {
           _id: 3,
@@ -56,6 +58,17 @@ class App extends Component {
           color: 'indigo',
           size: 'normal',
           images: [1, 2, 3],
+          category: 'jeans',
+        },
+        {
+          _id: 4,
+          title: 'Suede Combat Boots - Grey',
+          price: 1299.95,
+          image: 'shoe_01_',
+          color: 'grey',
+          size: 'normal',
+          images: [1, 2, 3, 4],
+          category: 'shoes',
         },
       ],
       cart: [
