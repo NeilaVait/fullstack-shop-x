@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Button from './common/button/button';
 import SocialLinks from './common/socialLinks';
 import YouMayAlsoLike from './youMayAlsoLike';
+import Price from './common/price/price';
 
 class ShopSingleItem extends Component {
   constructor() {
@@ -19,9 +20,7 @@ class ShopSingleItem extends Component {
     const item = this.props.items.find((i) => i._id === currentItemId);
 
     const { images, image } = item;
-    const imagesRequired = images.map(
-      (imgNo) => require(`../static/shop/${image}${imgNo}.jpg`).default
-    );
+    const imagesRequired = images.map((imgNo) => require(`../static/shop/${image}${imgNo}.jpg`).default);
 
     // const images = require(`../static/shop/${image}3.jpg`).default
     // nustatyti default image
@@ -65,7 +64,7 @@ class ShopSingleItem extends Component {
           </div>
           <div className="single__item-info-part">
             <h2 className="item-info__title">{item.title}</h2>
-            <p className="item-info__price">{item.price} eur</p>
+            <Price salePrice={item.salePrice}>{item.price}</Price>
             <div className="item-info__options d-flex ">
               <div>
                 <label htmlFor="colors">Colors</label>
@@ -93,11 +92,10 @@ class ShopSingleItem extends Component {
           </div>
         </div>
         <p className="single-item__description">
-          Our navy S.P.C.C logo flat peak cap is crafted from high quality Acrylic twill with a
-          contrast white 3D S.P.C.C embroidery on the crown. The crown is cut from six panels for
-          the perfect shape and has an adjustable PU back strap with metal clip to ensures a
-          comfortable fit. Our Flat Peak cap is finished off with an SPCC metal clip label, an SPCC
-          woven label, twill sweatband and the tonal embroidered eyelets ensure ventilation.
+          Our navy S.P.C.C logo flat peak cap is crafted from high quality Acrylic twill with a contrast white 3D
+          S.P.C.C embroidery on the crown. The crown is cut from six panels for the perfect shape and has an adjustable
+          PU back strap with metal clip to ensures a comfortable fit. Our Flat Peak cap is finished off with an SPCC
+          metal clip label, an SPCC woven label, twill sweatband and the tonal embroidered eyelets ensure ventilation.
         </p>
         <YouMayAlsoLike relatedItems={items} />
       </div>
