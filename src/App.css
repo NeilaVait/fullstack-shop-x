@@ -35,11 +35,14 @@ h6 {
 }
 
 /* Variables  */
+
 :root {
   --primary: #333;
   --secondary: snow;
 }
+
 /* common */
+
 .d-flex {
   display: flex;
   gap: 1em;
@@ -50,6 +53,16 @@ h6 {
 
 .w-50 {
   width: 50%;
+}
+
+/* spacing classes */
+
+.mb-1 {
+  margin-bottom: 0.5em;
+}
+
+.mb-2 {
+  margin-bottom: 1em;
 }
 
 .flex-wrap {
@@ -86,7 +99,6 @@ textarea:focus-visible {
 .header {
   background-color: var(--primary);
   color: var(--secondary);
-  margin-bottom: 2em;
 }
 
 .nav-link-item {
@@ -99,6 +111,18 @@ textarea:focus-visible {
 }
 
 /* Shop page */
+
+/* search cart */
+
+.shop-search input {
+  background-color: transparent;
+  margin-left: 1em;
+  border-color: transparent;
+  min-width: 250px;
+}
+.shop-search input:focus-visible {
+  border: 1px solid var(--primary);
+}
 
 /* --Categories */
 .categories-aside {
