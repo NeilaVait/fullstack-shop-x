@@ -13,6 +13,7 @@ const Price = (props) => {
 
 function formatPrice(price) {
   if (!price) return;
+  // TODO  solve 99.999 problem returning 100 instead 99.99
   const roundPrice = +price.toFixed(2);
   return roundPrice;
 }
