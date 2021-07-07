@@ -215,6 +215,11 @@ textarea:focus-visible {
   margin-bottom: 0.3em;
 }
 
+.single__item-info-part button {
+  min-width: 240px;
+  margin-bottom: 0.5em;
+}
+
 .single__item-info-part .price {
   font-size: 1.1em;
   margin-bottom: 2.5em;
