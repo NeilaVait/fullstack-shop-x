@@ -6,7 +6,8 @@ import Home from './pages/home';
 import Shop from './pages/shop';
 import 'font-awesome/css/font-awesome.css';
 import Footer from './components/footer';
-import axios from 'axios';
+// import axios from 'axios';
+import request from './utils/requests';
 
 class App extends Component {
   state = {
@@ -51,23 +52,11 @@ class App extends Component {
 
   async componentDidMount() {
     console.log('app mounted');
-    // axios
-    //   .get('http://localhost:4000/api/shop/categories')
-    //   .then((result) => console.log(result))
-    //   .catch((err) => console.log(err));
 
-    try {
-      const categoriesResult = await axios.get('http://localhost:4000/api/shop/categories');
-      const itemsResult = await axios.get('http://localhost:4000/api/shop/items');
-
-      // console.log(data);
-      const shopCopy = { ...this.state.shop };
-      shopCopy.shopCategories = categoriesResult.data;
-      shopCopy.items = itemsResult.data;
-      this.setState({ shop: shopCopy });
-    } catch (err) {
-      console.log(err);
-    }
+    const shopCopy = { ...this.state.shop };
+    shopCopy.shopCategories = await request.getCategories();
+    shopCopy.items = await request.getItems();
+    this.setState({ shop: shopCopy });
   }
 
   render() {
