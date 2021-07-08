@@ -12,7 +12,10 @@ class ShopSingleItem extends Component {
       mainImage: '',
       images: [],
       currentItemId: '',
-      currentItem: {},
+      currentItem: {
+        sizeQty: [],
+      },
+      selectedSize: { value: 'small' },
     };
   }
 
@@ -23,11 +26,6 @@ class ShopSingleItem extends Component {
     const { images, image } = item;
     const imagesRequired = images.map((imgNo) => require(`../static/shop/${image}${imgNo}.jpg`).default);
 
-    // const images = require(`../static/shop/${image}3.jpg`).default
-    // nustatyti default image
-    // atvaozduoti main image componente
-    // pakeisti main image su paspaudimu ant nuotraukos
-    // padaryti kad images butu nedidli ir tilptu 3 po nuotrauka
     this.setState({
       images: imagesRequired,
       mainImage: imagesRequired[2],
@@ -42,6 +40,17 @@ class ShopSingleItem extends Component {
   handleMainImage = (img) => {
     this.setState({ mainImage: img });
   };
+
+  handleSize = (event) => {
+    this.setState({ selectedSize: { value: event.target.value } });
+  };
+
+  getQuantity() {
+    const { currentItem: item, selectedSize } = this.state;
+    if (!item.sizeQty.length) return;
+    const { quantity } = item.sizeQty.find((i) => i.size === selectedSize.value);
+    return quantity;
+  }
 
   render() {
     const { socialLinksData, items } = this.props;
@@ -81,11 +90,18 @@ class ShopSingleItem extends Component {
               <div>
                 <label htmlFor="sizes">Sizes</label>
                 <br />
-                <select name="sizes" id="sizes">
-                  <option value="1">Small</option>
-                  <option value="2">Medium</option>
-                  <option value="3">Large</option>
+                <select onChange={this.handleSize} value={this.state.selectedSize.value} name="sizes" id="sizes">
+                  {item.sizeQty &&
+                    item.sizeQty.map((i) => (
+                      <option key={i._id} value={i.size}>
+                        {i.size}
+                      </option>
+                    ))}
                 </select>
+              </div>
+              <div>
+                <h4>In stock </h4>
+                <p>{item.sizeQty && this.getQuantity()}</p>
               </div>
             </div>
             <Button outline>Add to cart</Button>

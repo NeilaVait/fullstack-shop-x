@@ -45,11 +45,7 @@ class Shop extends Component {
             </div>
             <SocialLinks socialLink={socialLinksData} />
             <div className="users">
-              <ul>
-                {this.state.users.map((u) => (
-                  <li key={u._id}>{u.name}</li>
-                ))}
-              </ul>
+              <ul>{this.state.users && this.state.users.map((u) => <li key={u._id}>{u.name}</li>)}</ul>
             </div>
           </aside>
 
