@@ -6,6 +6,7 @@ import Home from './pages/home';
 import Shop from './pages/shop';
 import 'font-awesome/css/font-awesome.css';
 import Footer from './components/footer';
+import axios from 'axios';
 
 class App extends Component {
   state = {
@@ -35,7 +36,11 @@ class App extends Component {
           salePrice: 49.99,
           image: 'acc_hat_01_',
           color: 'green',
-          size: 'normal',
+          sizeQty: [
+            { size: 'small', quantity: 10 },
+            { size: 'medium', quantity: 7 },
+            { size: 'large', quantity: 15 },
+          ],
           images: [1, 2, 3, 4, 5],
           sku: 'hat_01',
           category: 'accessories',
@@ -70,6 +75,16 @@ class App extends Component {
           images: [1, 2, 3, 4],
           category: 'shoes',
         },
+        {
+          _id: 5,
+          title: 'Suede Combat Boots - Stone',
+          price: 1299.95,
+          image: 'shoe_02_',
+          color: 'stone',
+          size: 'normal',
+          images: [1, 2, 3, 4],
+          category: 'shoes',
+        },
       ],
       cart: [
         {
@@ -81,6 +96,7 @@ class App extends Component {
           size: 'normal',
           sku: 'hat_01',
           quantity: 1,
+          // userId: link to user
         },
         {
           _id: 2,
@@ -95,6 +111,22 @@ class App extends Component {
       ],
     },
   };
+
+  async componentDidMount() {
+    console.log('app mounted');
+    // axios
+    //   .get('http://localhost:4000/api/shop/categories')
+    //   .then((result) => console.log(result))
+    //   .catch((err) => console.log(err));
+
+    try {
+      const { data } = await axios.get('http://localhost:4000/api/shop/categories');
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   render() {
     const { navLinks, shop } = this.state;
     return (
