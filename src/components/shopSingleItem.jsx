@@ -36,7 +36,7 @@ class ShopSingleItem extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log('update');
+    // console.log('update');
   }
 
   handleMainImage = (img) => {
@@ -46,6 +46,7 @@ class ShopSingleItem extends Component {
   render() {
     const { socialLinksData, items } = this.props;
     const { currentItem: item } = this.state;
+
     return (
       <div className="single-item ">
         <div className="d-flex">

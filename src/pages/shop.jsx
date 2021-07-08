@@ -5,7 +5,19 @@ import { Route } from 'react-router';
 import { Link } from 'react-router-dom';
 import SocialLinks from '../components/common/socialLinks';
 import Cart from '../components/cart/cart';
+import request from './../utils/requests';
+
 class Shop extends Component {
+  state = {
+    users: [],
+  };
+
+  async componentDidMount() {
+    let usersCopy = [...this.state.users];
+    usersCopy = await request.getUsers();
+    this.setState({ users: usersCopy });
+  }
+
   render() {
     const { socialLinksData, shopCategories, items, cart } = this.props.shop;
     return (
@@ -32,7 +44,15 @@ class Shop extends Component {
               </ul>
             </div>
             <SocialLinks socialLink={socialLinksData} />
+            <div className="users">
+              <ul>
+                {this.state.users.map((u) => (
+                  <li key={u._id}>{u.name}</li>
+                ))}
+              </ul>
+            </div>
           </aside>
+
           <main className="shop-items-part">
             <Route
               path="/shop/item/:id"
