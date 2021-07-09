@@ -37,7 +37,7 @@ h6 {
 /* Variables  */
 
 :root {
-  --primary: #333;
+  --primary: rgb(53, 53, 53);
   --secondary: snow;
 }
 
@@ -140,11 +140,11 @@ textarea:focus-visible {
 
 .categories .category-item {
   padding: 0.3em 0;
-  border-bottom: 1px solid var(--primary);
+  border-bottom: 1px solid lightgray;
 }
 
 .categories .category-item:first-child {
-  border-top: 1px solid var(--primary);
+  border-top: 1px solid lightgray;
 }
 
 .social__link {
@@ -179,6 +179,24 @@ textarea:focus-visible {
 
 .shop-items-part {
   flex-grow: 1;
+}
+
+.users > ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.users > ul > li {
+  cursor: pointer;
+  margin-bottom: 0.4em;
+  border-bottom: 1px solid lightgrey;
+  padding-bottom: 0.3em;
+}
+
+.users > h3 {
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+  font-weight: bolder;
 }
 
 /* shop-list */
@@ -323,8 +341,6 @@ textarea:focus-visible {
   width: auto;
   text-align: left;
 }
-
-/* price */
 
 /* Responsive */
 
