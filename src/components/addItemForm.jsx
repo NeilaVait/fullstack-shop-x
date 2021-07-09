@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import Button from './common/button/button';
 
 class AddItemForm extends Component {
   state = {
@@ -14,13 +13,20 @@ class AddItemForm extends Component {
     event.preventDefault();
   }
 
+  handleTextChange = ({ target }) => {
+    const formDataCopy = { ...this.state.formData };
+    formDataCopy[target.name] = target.value;
+    this.setState({ formData: formDataCopy });
+  };
+
   render() {
+    const { title, price, quantity } = this.state.formData;
     return (
       <div className="add-item">
         <form className="add-item-form" onSubmit={this.handleSubmit}>
           <h3>Fill to add item to shop</h3>
-          <input type="text" name="title" placeholder="Title" />
-          <input type="text" name="price" placeholder="Price" />
+          <input onChange={this.handleTextChange} value={title} type="text" name="title" placeholder="Title" />
+          <input onChange={this.handleTextChange} value={price} type="number" name="price" placeholder="Price" />
           {/* <input type="text" placeholder="image" />
           <input type="text" placeholder="color" />
           <label htmlFor="">Choose size and quantity</label>
