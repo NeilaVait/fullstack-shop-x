@@ -342,6 +342,22 @@ textarea:focus-visible {
   text-align: left;
 }
 
+/* additemForm */
+
+.add-item-form > input,
+label,
+select {
+  display: block;
+  background-color: transparent;
+  font-size: 1em;
+  width: 60%;
+  margin-top: 0.5em;
+}
+
+.add-item-form {
+  margin-bottom: 2em;
+}
+
 /* Responsive */
 
 @media screen and (max-width: 800px) {

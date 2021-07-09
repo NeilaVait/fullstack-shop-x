@@ -4,6 +4,7 @@ import './App.css';
 import HeaderX from './components/headerX';
 import Home from './pages/home';
 import Shop from './pages/shop';
+import Admin from './pages/admin';
 import 'font-awesome/css/font-awesome.css';
 import Footer from './components/footer';
 // import axios from 'axios';
@@ -15,6 +16,7 @@ class App extends Component {
       { to: '/', title: 'Home' },
       { to: '/shop', title: 'Shop' },
       { to: '/about', title: 'About' },
+      { to: '/admin', title: 'Admin' },
     ],
     shop: {
       shopCategories: [],
@@ -76,6 +78,7 @@ class App extends Component {
         <div className="container">
           <Switch>
             {/* kai reikia perduoti props i route  mes tai darom su sekancia sintaxe */}
+            <Route exact path="/admin" component={Admin} />
             <Route path="/shop" render={(props) => <Shop shop={shop} {...props} />} />
             <Route exact path="/" component={Home} />
           </Switch>
