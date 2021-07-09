@@ -5,7 +5,7 @@ import { Route } from 'react-router';
 import { Link } from 'react-router-dom';
 import SocialLinks from '../components/common/socialLinks';
 import Cart from '../components/cart/cart';
-import request from './../utils/requests';
+import { getUsers } from './../utils/requests';
 
 class Shop extends Component {
   state = {
@@ -14,7 +14,7 @@ class Shop extends Component {
 
   async componentDidMount() {
     let usersCopy = [...this.state.users];
-    usersCopy = await request.getUsers();
+    usersCopy = await getUsers();
     this.setState({ users: usersCopy });
   }
 
