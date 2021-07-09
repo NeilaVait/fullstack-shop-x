@@ -42,11 +42,9 @@ export const getUsers = async () => {
 };
 
 // add to cart
-export const addToCart = async () => {
+export const addToCart = async (userId, cartObj) => {
   try {
-    const ats = await axios.post(`${cartBaseUrl}/1245`, {
-      bubble: 'gum',
-    });
+    const ats = await axios.post(`${cartBaseUrl}/${userId}`, cartObj);
     console.log(ats.data);
   } catch (err) {
     console.log(err);

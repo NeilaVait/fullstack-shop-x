@@ -15,7 +15,7 @@ class ShopSingleItem extends Component {
       currentItem: {
         sizeQty: [],
       },
-      selectedSize: { value: 'small' },
+      selectedSize: 'small',
       selectedColor: 'green',
       currentUserId: '60e6d69049c70712680ccad4',
     };
@@ -44,7 +44,7 @@ class ShopSingleItem extends Component {
   };
 
   handleSize = (event) => {
-    this.setState({ selectedSize: { value: event.target.value } });
+    this.setState({ selectedSize: event.target.value });
   };
 
   handleColor = (event) => {
@@ -54,13 +54,21 @@ class ShopSingleItem extends Component {
   getQuantity() {
     const { currentItem: item, selectedSize } = this.state;
     if (!item.sizeQty.length) return;
-    const { quantity } = item.sizeQty.find((i) => i.size === selectedSize.value);
+    const { quantity } = item.sizeQty.find((i) => i.size === selectedSize);
     return quantity;
   }
 
   handleAddToCart = () => {
+    const { currentUserId, currentItem, selectedSize, selectedColor } = this.state;
     console.log('add to cart please');
-    addToCart();
+    addToCart(currentUserId, {
+      itemId: currentItem._id,
+      color: selectedColor,
+      size: selectedSize,
+      quantity: 1,
+      sku: currentItem.sku,
+      price: currentItem.salePrice || currentItem.price,
+    });
   };
 
   render() {
@@ -101,7 +109,7 @@ class ShopSingleItem extends Component {
               <div>
                 <label htmlFor="sizes">Sizes</label>
                 <br />
-                <select onChange={this.handleSize} value={this.state.selectedSize.value} name="sizes" id="sizes">
+                <select onChange={this.handleSize} value={this.state.selectedSize} name="sizes" id="sizes">
                   {item.sizeQty &&
                     item.sizeQty.map((i) => (
                       <option key={i._id} value={i.size}>
