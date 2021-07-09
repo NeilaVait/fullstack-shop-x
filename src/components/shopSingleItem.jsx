@@ -17,6 +17,7 @@ class ShopSingleItem extends Component {
       },
       selectedSize: { value: 'small' },
       selectedColor: 'green',
+      currentUserId: '60e6d69049c70712680ccad4',
     };
   }
 
