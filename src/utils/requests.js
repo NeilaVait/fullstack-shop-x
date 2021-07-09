@@ -3,6 +3,7 @@ import axios from 'axios';
 const catBaseUrl = 'http://localhost:4000/api/shop/categories';
 const itemBaseUrl = 'http://localhost:4000/api/shop/items';
 const userBaseUrl = 'http://localhost:4000/api/shop/users';
+const cartBaseUrl = 'http://localhost:4000/api/shop/cart';
 
 export const getCategories = async () => {
   try {
@@ -21,6 +22,7 @@ export const getItems = async () => {
     console.log(err);
   }
 };
+
 export const getSingleItem = async (singleItemId) => {
   try {
     const itemsResult = await axios.get(itemBaseUrl + '/' + singleItemId);
@@ -34,6 +36,18 @@ export const getUsers = async () => {
   try {
     const usersResult = await axios.get(userBaseUrl);
     return usersResult.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+// add to cart
+export const addToCart = async () => {
+  try {
+    const ats = await axios.post(`${cartBaseUrl}/1245`, {
+      bubble: 'gum',
+    });
+    console.log(ats);
   } catch (err) {
     console.log(err);
   }
