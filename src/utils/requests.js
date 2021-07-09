@@ -47,7 +47,7 @@ export const addToCart = async () => {
     const ats = await axios.post(`${cartBaseUrl}/1245`, {
       bubble: 'gum',
     });
-    console.log(ats);
+    console.log(ats.data);
   } catch (err) {
     console.log(err);
   }
