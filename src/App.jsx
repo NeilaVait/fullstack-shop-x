@@ -7,6 +7,8 @@ import Shop from './pages/shop';
 import Admin from './pages/admin';
 import 'font-awesome/css/font-awesome.css';
 import Footer from './components/footer';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import axios from 'axios';
 import { getItems, getCategories } from './utils/requests';
 
@@ -91,6 +93,7 @@ class App extends Component {
     const { navLinks, shop, currentUser } = this.state;
     return (
       <div className="App">
+        <ToastContainer />
         <HeaderX currentUser={currentUser} navLinks={navLinks} />
         <div className="container">
           <Switch>
