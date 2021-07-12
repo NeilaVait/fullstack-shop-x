@@ -7,7 +7,7 @@ import Shop from './pages/shop';
 import Admin from './pages/admin';
 import 'font-awesome/css/font-awesome.css';
 import Footer from './components/footer';
-import { ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // import axios from 'axios';
 import { getItems, getCategories } from './utils/requests';
@@ -87,6 +87,7 @@ class App extends Component {
     sessionStorage.setItem('loggedInUserId', userId);
     sessionStorage.setItem('loggedInUserEmail', userEmail);
     this.setState({ currentUser: { _id: userId, email: userEmail } });
+    toast.dark(`${userEmail} logged in`);
   };
 
   render() {
