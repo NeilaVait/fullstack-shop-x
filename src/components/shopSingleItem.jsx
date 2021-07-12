@@ -4,6 +4,8 @@ import SocialLinks from './common/socialLinks';
 import YouMayAlsoLike from './youMayAlsoLike';
 import Price from './common/price/price';
 import { getSingleItem, addToCart } from './../utils/requests';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class ShopSingleItem extends Component {
   constructor(props) {
@@ -69,6 +71,7 @@ class ShopSingleItem extends Component {
   }
 
   handleAddToCart = () => {
+    toast.dark('Added to cart');
     const { currentUserId, currentItem, selectedSize, selectedColor } = this.state;
     console.log('add to cart please');
     addToCart(currentUserId, {
@@ -136,6 +139,7 @@ class ShopSingleItem extends Component {
             <Button onClick={this.handleAddToCart} outline>
               Add to cart
             </Button>
+            <ToastContainer />
             <br />
             <Button>Buy it now</Button>
             <SocialLinks titles socialLink={socialLinksData} />

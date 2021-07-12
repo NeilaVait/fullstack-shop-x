@@ -13,7 +13,8 @@ class CartList extends Component {
   async componentDidMount() {
     // get all cart items for currentUser
     const cartItems = await getCartItems(this.getUserIdFromSession());
-    console.log(cartItems);
+    console.log(cartItems.data);
+    this.setState({ currentCart: cartItems.data });
   }
 
   getUserIdFromSession() {
@@ -30,9 +31,9 @@ class CartList extends Component {
           <h3 className="cart-col">Quantity</h3>
           <h3 className="cart-col">Total</h3>
         </div>
-        {this.props.cartItems.randomId.map((item) => (
+        {/* {this.state.currentCart.map((item) => (
           <CartItem key={item._id} item={item} />
-        ))}
+        ))} */}
       </div>
     );
   }
