@@ -64,11 +64,20 @@ class App extends Component {
 
   async componentDidMount() {
     console.log('app mounted');
-
+    this.logInUserIfInSession();
     const shopCopy = { ...this.state.shop };
     shopCopy.shopCategories = await getCategories();
     shopCopy.items = await getItems();
     this.setState({ shop: shopCopy });
+  }
+
+  logInUserIfInSession() {
+    //pasitikrinti ar tra user sesijoj ir nustatyti jei yra
+    const currentUserInSession = sessionStorage.getItem('loggedInUserId');
+    const currentUserInSessionEmail = sessionStorage.getItem('loggedInUserEmail');
+    if (currentUserInSession) {
+      this.setState({ currentUser: { _id: currentUserInSession, email: currentUserInSessionEmail } });
+    }
   }
 
   handleLogin = (userId, userEmail) => {
