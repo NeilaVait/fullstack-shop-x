@@ -20,7 +20,7 @@ class AddItemForm extends Component {
   };
 
   render() {
-    const { title, price, quantity } = this.state.formData;
+    const { title, price } = this.state.formData;
     return (
       <div className="add-item">
         <form className="add-item-form" onSubmit={this.handleSubmit}>
