@@ -17,11 +17,17 @@ class ShopSingleItem extends Component {
       },
       selectedSize: 'small',
       selectedColor: 'green',
-      currentUserId: '60e6d69049c70712680ccad4',
+      currentUserId: '',
     };
   }
 
+  setCurrentUserId(params) {
+    const currentUserId = sessionStorage.getItem('loggedInUserId');
+    if (currentUserId) this.setState({ currentUserId });
+  }
+
   async componentDidMount() {
+    this.setCurrentUserId();
     const currentItemId = this.props.match.params.id;
     const item = await getSingleItem(currentItemId);
 
@@ -36,7 +42,10 @@ class ShopSingleItem extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // console.log('update');
+    // const { currentUserId } = this.state;
+    // if (currentUserId !== sessionStorage.getItem('loggedInUserId')) {
+    //   console.log('update');
+    // }
   }
 
   handleMainImage = (img) => {
@@ -80,6 +89,7 @@ class ShopSingleItem extends Component {
         <div className="d-flex">
           <div className="single__images-part w-50 pos-rel">
             {item.salePrice && <span className="sale">Sale</span>}
+            <h2>currentUserId: {this.state.currentUserId}</h2>
             <img className="single__main-image" src={this.state.mainImage} alt="main item" />
             <div className="single__photos d-flex flex-wrap">
               {this.state.images.map((img) => (
