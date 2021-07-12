@@ -12,6 +12,7 @@ import { getItems, getCategories } from './utils/requests';
 
 class App extends Component {
   state = {
+    currentUser: {},
     navLinks: [
       { to: '/', title: 'Home' },
       { to: '/shop', title: 'Shop' },
@@ -70,16 +71,23 @@ class App extends Component {
     this.setState({ shop: shopCopy });
   }
 
+  handleLogin = (userId, userEmail) => {
+    // autentifikuoti useri
+    sessionStorage.setItem('loggedInUserId', userId);
+    sessionStorage.setItem('loggedInUserEmail', userEmail);
+    this.setState({ currentUser: { _id: userId, email: userEmail } });
+  };
+
   render() {
-    const { navLinks, shop } = this.state;
+    const { navLinks, shop, currentUser } = this.state;
     return (
       <div className="App">
-        <HeaderX navLinks={navLinks} />
+        <HeaderX currentUser={currentUser} navLinks={navLinks} />
         <div className="container">
           <Switch>
             {/* kai reikia perduoti props i route  mes tai darom su sekancia sintaxe */}
             <Route exact path="/admin" component={Admin} />
-            <Route path="/shop" render={(props) => <Shop shop={shop} {...props} />} />
+            <Route path="/shop" render={(props) => <Shop onLogin={this.handleLogin} shop={shop} {...props} />} />
             <Route exact path="/" component={Home} />
           </Switch>
         </div>
