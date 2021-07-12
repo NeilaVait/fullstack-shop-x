@@ -42,10 +42,11 @@ class ShopSingleItem extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // const { currentUserId } = this.state;
-    // if (currentUserId !== sessionStorage.getItem('loggedInUserId')) {
-    //   console.log('update');
-    // }
+    const { currentUserId } = this.state;
+    if (currentUserId !== sessionStorage.getItem('loggedInUserId')) {
+      console.log('update');
+      this.setCurrentUserId();
+    }
   }
 
   handleMainImage = (img) => {
