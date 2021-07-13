@@ -84,6 +84,8 @@ class ShopSingleItem extends Component {
       sku: currentItem.sku,
       price: currentItem.salePrice || currentItem.price,
     });
+    // kazka kazka cia
+    this.props.onCartCount(currentUserId);
     toast.dark('Added to cart');
   };
 

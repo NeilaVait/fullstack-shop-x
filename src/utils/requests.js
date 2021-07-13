@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const catBaseUrl = 'http://localhost:4000/api/shop/categories';
 const itemBaseUrl = 'http://localhost:4000/api/shop/items';
-const userBaseUrl = 'http://localhost:4000/api/shop/users';
+const usersBaseUrl = 'http://localhost:4000/api/shop/users';
 const cartBaseUrl = 'http://localhost:4000/api/shop/cart';
 
 export const getCategories = async () => {
@@ -13,7 +13,6 @@ export const getCategories = async () => {
     console.log(err);
   }
 };
-
 export const getItems = async () => {
   try {
     const itemsResult = await axios.get(itemBaseUrl);
@@ -22,7 +21,6 @@ export const getItems = async () => {
     console.log(err);
   }
 };
-
 export const getSingleItem = async (singleItemId) => {
   try {
     const itemsResult = await axios.get(itemBaseUrl + '/' + singleItemId);
@@ -31,11 +29,10 @@ export const getSingleItem = async (singleItemId) => {
     console.log(err);
   }
 };
-
 export const getUsers = async () => {
   try {
-    const usersResult = await axios.get(userBaseUrl);
-    return usersResult.data;
+    const users = await axios.get(usersBaseUrl);
+    return users.data;
   } catch (err) {
     console.log(err);
   }
@@ -52,13 +49,14 @@ export const addToCart = async (userId, cartObj) => {
 };
 
 export const getCartItems = async (userId) => {
+  // console.log('trying to get all cart items');
   const ats = await axios.get(`${cartBaseUrl}/${userId}`);
   return ats;
 };
 
 export const getCartCount = async (userId) => {
   // send get rq to get cart count
-  // console.log('send get rq');
+  // console.log('send get rq to get cart count');
   const ats = await axios.get(`${cartBaseUrl}/count/${userId}`);
   return ats.data;
 };

@@ -1,74 +1,76 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router';
 import './App.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import HeaderX from './components/headerX';
 import Home from './pages/home';
 import Shop from './pages/shop';
-import Admin from './pages/admin';
 import 'font-awesome/css/font-awesome.css';
 import Footer from './components/footer';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-// import axios from 'axios';
-import { getItems, getCategories, getCartCount } from './utils/requests';
+import { getCategories, getItems, getCartCount } from './utils/requests';
+import Admin from './pages/admin';
 
 class App extends Component {
-  state = {
-    currentUser: {},
-    navLinks: [
-      { to: '/', title: 'Home' },
-      { to: '/shop', title: 'Shop' },
-      { to: '/about', title: 'About' },
-      { to: '/admin', title: 'Admin' },
-    ],
-    shop: {
-      shopCategories: [],
-      socialLinksData: [
-        { to: 'https://www.facebook.com', icon: 'fa fa-facebook', title: 'share' },
-        { to: 'https://www.twitter.com', icon: 'fa fa-twitter', title: 'tweet' },
-        { to: 'https://www.instagram.com', icon: 'fa fa-instagram', title: 'pin it' },
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentUser: {},
+      navLinks: [
+        { to: '/', title: 'Home' },
+        { to: '/shop', title: 'Shop' },
+        { to: '/admin', title: 'Admin' },
+        { to: '/about', title: 'About' },
       ],
-      items: [],
-      cart: {
-        randomId: [
+      shop: {
+        shopCategories: [],
+        items: [],
+        socialLinksData: [
+          { to: 'https://www.facebook.com', icon: 'fa fa-facebook', title: 'share' },
+          { to: 'https://www.twitter.com', icon: 'fa fa-twitter', title: 'tweet' },
+          { to: 'https://www.instagram.com', icon: 'fa fa-instagram', title: 'pin it' },
+        ],
+        cart: {
+          randomId458: [
+            {
+              _id: 1,
+              title: 'Green hat',
+              price: 99.99,
+              image: 'acc_hat_01_',
+              color: 'green',
+              size: 'normal',
+              sku: 'hat_01',
+              quantity: 1,
+              // userId: 'links to user',
+            },
+            {
+              _id: 2,
+              title: 'Feather Slim Fit Denim Jeans',
+              price: 1299.95,
+              image: 'denim_01_',
+              color: 'indigo',
+              size: 'normal',
+              sku: '01',
+              quantity: 2,
+            },
+          ],
+        },
+        users: [
           {
-            _id: 1,
-            title: 'Green hat',
-            price: 99.99,
-            image: 'acc_hat_01_',
-            color: 'green',
-            size: 'normal',
-            sku: 'hat_01',
-            quantity: 1,
-            // userId: link to user
-          },
-          {
-            _id: 2,
-            title: 'Feather Slim Fit Denim Jeans',
-            price: 1299.95,
-            image: 'denim_01_',
-            color: 'indigo',
-            size: 'normal',
-            sku: '01',
-            quantity: 2,
+            name: 'Bob Stone',
+            email: 'stone@bob.com',
+            password: 'pass',
           },
         ],
       },
-      users: [
-        {
-          name: 'Bob Stone',
-          email: 'bob@stone.com',
-          password: 'pass',
-        },
-      ],
-    },
-    cartCount: null,
-  };
+      cartCount: null,
+    };
+  }
 
   async componentDidMount() {
-    this.handleCartCount();
-
+    console.log('app mounted');
     this.logInUserIfInSession();
+    // console.log('ar promisas ar data ', request.getCategories());
     const shopCopy = { ...this.state.shop };
     shopCopy.shopCategories = await getCategories();
     shopCopy.items = await getItems();
@@ -76,29 +78,32 @@ class App extends Component {
   }
 
   async logInUserIfInSession() {
-    //pasitikrinti ar tra user sesijoj ir nustatyti jei yra
+    // pasitikrinti ar yra user sessijoj, ir nustatyti  jei yra
     const currentUserInSession = sessionStorage.getItem('loggedInUserId');
     const currentUserInSessionEmail = sessionStorage.getItem('loggedInUserEmail');
     if (currentUserInSession) {
-      await this.setState({ currentUser: { _id: currentUserInSession, email: currentUserInSessionEmail } });
+      await this.setState({
+        currentUser: { _id: currentUserInSession, email: currentUserInSessionEmail },
+      });
       this.handleCartCount();
     }
   }
 
-  handleLogin = (userId, userEmail) => {
-    // autentifikuoti useri
+  handleLogin = async (userId, email) => {
+    // autetifikuoti useri
     sessionStorage.setItem('loggedInUserId', userId);
-    sessionStorage.setItem('loggedInUserEmail', userEmail);
-    this.setState({ currentUser: { _id: userId, email: userEmail } });
-    toast.dark(`${userEmail} logged in`);
+    sessionStorage.setItem('loggedInUserEmail', email);
+    toast.success(`You are now logged in as ${email}`);
+    await this.setState({ currentUser: { _id: userId, email: email } });
+    this.handleCartCount();
   };
 
-  async handleCartCount() {
-    //nustatyti state cartCount i tiek kiek turim cart itemu
-    const ats = await getCartCount(this.state.currentUser._id);
-
-    this.setState({ cartCount: ats });
-    // pass cartCount to shop
+  async handleCartCount(id = this.state.currentUser._id) {
+    // nustatyti state cartCount i tiek kiek turim karte item
+    const ats = await getCartCount(id);
+    // console.log(ats);
+    this.state && this.setState({ cartCount: ats });
+    //pass cartCount to shop
   }
 
   render() {
@@ -110,11 +115,19 @@ class App extends Component {
         <div className="container">
           <Switch>
             {/* kai reikia perduoti props i route  mes tai darom su sekancia sintaxe */}
-            <Route exact path="/admin" component={Admin} />
             <Route
               path="/shop"
-              render={(props) => <Shop cartCount={cartCount} onLogin={this.handleLogin} shop={shop} {...props} />}
+              render={(props) => (
+                <Shop
+                  cartCount={cartCount}
+                  onCartCount={this.handleCartCount}
+                  onLogin={this.handleLogin}
+                  shop={shop}
+                  {...props}
+                />
+              )}
             />
+            <Route exact path="/admin" component={Admin} />
             <Route exact path="/" component={Home} />
           </Switch>
         </div>

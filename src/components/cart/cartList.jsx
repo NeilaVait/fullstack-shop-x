@@ -9,11 +9,9 @@ class CartList extends Component {
       currentCart: [],
     };
   }
-
   async componentDidMount() {
-    // get all cart items for current user
     const cartItems = await getCartItems(this.getUserIdFromSession());
-
+    console.log(cartItems.data);
     this.setState({ currentCart: cartItems.data });
   }
 
@@ -21,7 +19,6 @@ class CartList extends Component {
     const id = sessionStorage.getItem('loggedInUserId');
     return id ? id : console.error('no id in session');
   }
-
   render() {
     return (
       <div>
