@@ -362,25 +362,40 @@ select {
 }
 
 /* Responsive */
+@media screen and (max-width: 500px) {
+  .shop-item {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .shop-list {
+    justify-content: space-around;
+  }
+}
 
 @media screen and (max-width: 800px) {
   .d-upto-800 {
     display: block;
   }
+
   .cart-col {
     display: flex;
     justify-content: space-around;
     width: 100%;
   }
+
   .cart-columns {
     display: none;
   }
+
   .cart-item,
   .item-preview {
     flex-direction: column;
     text-align: center;
     align-items: center;
   }
+
   .cart-item {
     border-bottom: 1px solid lightgray;
     padding: 1.5em 0 1.5em;

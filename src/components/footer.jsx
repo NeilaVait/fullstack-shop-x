@@ -16,7 +16,7 @@ const Footer = (props) => {
           </nav>
         </div>
         <div className="footer__cta">
-          <h4 className="footer__title">Buy in the know</h4>
+          <h4 className="footer__title">Be in the know</h4>
           <p>Promotions, new products and sales. Directly to your inbox</p>
           <div className="footer__input-group">
             <input type="text" placeholder="Your Email" />
