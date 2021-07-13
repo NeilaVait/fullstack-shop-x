@@ -67,7 +67,7 @@ class App extends Component {
 
   async componentDidMount() {
     this.handleCartCount();
-    console.log('app mounted');
+
     this.logInUserIfInSession();
     const shopCopy = { ...this.state.shop };
     shopCopy.shopCategories = await getCategories();
@@ -96,7 +96,7 @@ class App extends Component {
   async handleCartCount() {
     //nustatyti state cartCount i tiek kiek turim cart itemu
     const ats = await getCartCount(this.state.currentUser._id);
-    console.log(ats);
+
     this.setState({ cartCount: ats });
     // pass cartCount to shop
   }

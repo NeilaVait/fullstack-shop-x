@@ -52,7 +52,6 @@ export const addToCart = async (userId, cartObj) => {
 };
 
 export const getCartItems = async (userId) => {
-  console.log('trying to get items');
   const ats = await axios.get(`${cartBaseUrl}/${userId}`);
   return ats;
 };
