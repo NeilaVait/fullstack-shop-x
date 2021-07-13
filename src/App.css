@@ -363,6 +363,10 @@ select {
 
 /* Responsive */
 @media screen and (max-width: 500px) {
+  .flex-column-upto-500 {
+    flex-direction: column;
+  }
+
   .shop-item {
     width: 100%;
   }
