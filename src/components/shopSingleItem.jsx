@@ -75,6 +75,8 @@ class ShopSingleItem extends Component {
     const { currentUserId, currentItem, selectedSize, selectedColor } = this.state;
     console.log('add to cart please');
     addToCart(currentUserId, {
+      title: currentItem.title,
+      image: currentItem.image,
       itemId: currentItem._id,
       color: selectedColor,
       size: selectedSize,
