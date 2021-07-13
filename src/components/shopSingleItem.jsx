@@ -91,7 +91,7 @@ class ShopSingleItem extends Component {
     }
     console.log('ats', ats);
     // kazka kazka cia
-    // this.props.onCartCount(currentUserId);
+    this.props.onCartCount(currentUserId);
   };
 
   render() {

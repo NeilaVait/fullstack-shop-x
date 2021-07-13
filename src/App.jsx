@@ -98,13 +98,13 @@ class App extends Component {
     this.handleCartCount();
   };
 
-  async handleCartCount(id = this.state.currentUser._id) {
+  handleCartCount = async (id = this.state.currentUser._id) => {
     // nustatyti state cartCount i tiek kiek turim karte item
     const ats = await getCartCount(id);
     // console.log(ats);
     this.state && this.setState({ cartCount: ats });
     //pass cartCount to shop
-  }
+  };
 
   render() {
     const { navLinks, shop, currentUser, cartCount } = this.state;
