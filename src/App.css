@@ -199,6 +199,9 @@ textarea:focus-visible {
   font-weight: bolder;
 }
 
+.fa-shopping-cart {
+  margin-right: 5px;
+}
 /* shop-list */
 
 .shop-list {

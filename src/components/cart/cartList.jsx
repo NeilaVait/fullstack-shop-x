@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import CartItem from './cartItem';
 import { getCartItems } from '../../utils/requests';
 
 class CartList extends Component {
@@ -11,7 +10,8 @@ class CartList extends Component {
   }
 
   async componentDidMount() {
-    // get all cart items for currentUser
+    console.log('componentDidMount -- cartList');
+    // get all cart items for current user
     const cartItems = await getCartItems(this.getUserIdFromSession());
     console.log(cartItems.data);
     this.setState({ currentCart: cartItems.data });

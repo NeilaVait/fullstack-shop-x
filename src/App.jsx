@@ -10,7 +10,7 @@ import Footer from './components/footer';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // import axios from 'axios';
-import { getItems, getCategories } from './utils/requests';
+import { getItems, getCategories, getCartCount } from './utils/requests';
 
 class App extends Component {
   state = {
@@ -62,9 +62,11 @@ class App extends Component {
         },
       ],
     },
+    cartCount: null,
   };
 
   async componentDidMount() {
+    this.handleCartCount();
     console.log('app mounted');
     this.logInUserIfInSession();
     const shopCopy = { ...this.state.shop };
@@ -73,12 +75,13 @@ class App extends Component {
     this.setState({ shop: shopCopy });
   }
 
-  logInUserIfInSession() {
+  async logInUserIfInSession() {
     //pasitikrinti ar tra user sesijoj ir nustatyti jei yra
     const currentUserInSession = sessionStorage.getItem('loggedInUserId');
     const currentUserInSessionEmail = sessionStorage.getItem('loggedInUserEmail');
     if (currentUserInSession) {
-      this.setState({ currentUser: { _id: currentUserInSession, email: currentUserInSessionEmail } });
+      await this.setState({ currentUser: { _id: currentUserInSession, email: currentUserInSessionEmail } });
+      this.handleCartCount();
     }
   }
 
@@ -90,8 +93,16 @@ class App extends Component {
     toast.dark(`${userEmail} logged in`);
   };
 
+  async handleCartCount() {
+    //nustatyti state cartCount i tiek kiek turim cart itemu
+    const ats = await getCartCount(this.state.currentUser._id);
+    console.log(ats);
+    this.setState({ cartCount: ats });
+    // pass cartCount to shop
+  }
+
   render() {
-    const { navLinks, shop, currentUser } = this.state;
+    const { navLinks, shop, currentUser, cartCount } = this.state;
     return (
       <div className="App">
         <ToastContainer />
@@ -100,7 +111,10 @@ class App extends Component {
           <Switch>
             {/* kai reikia perduoti props i route  mes tai darom su sekancia sintaxe */}
             <Route exact path="/admin" component={Admin} />
-            <Route path="/shop" render={(props) => <Shop onLogin={this.handleLogin} shop={shop} {...props} />} />
+            <Route
+              path="/shop"
+              render={(props) => <Shop cartCount={cartCount} onLogin={this.handleLogin} shop={shop} {...props} />}
+            />
             <Route exact path="/" component={Home} />
           </Switch>
         </div>
