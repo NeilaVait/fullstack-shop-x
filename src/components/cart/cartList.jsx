@@ -12,6 +12,8 @@ class CartList extends Component {
   async componentDidMount() {
     const cartItems = await getCartItems(this.getUserIdFromSession());
     console.log(cartItems.data);
+    // patikrinti ar cart tuscias
+    if (Object.keys(cartItems.data).length === 0) return;
     this.setState({ currentCart: cartItems.data });
   }
 

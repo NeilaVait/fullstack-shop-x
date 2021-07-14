@@ -63,7 +63,7 @@ class ShopSingleItem extends Component {
   };
 
   handleAddToCart = async () => {
-    const { currentUserId, currentItem, selectedSize, selectedColor } = this.state;
+    const { currentUserId, currentItem } = this.state;
     console.log('add to cart please');
     const ats = await addToCart(currentUserId, currentItem);
     if (!ats) {
