@@ -57,8 +57,13 @@ export const getCartItems = async (userId) => {
 };
 
 // update cartitem qty
-export const sendUpdateQty = async (userId, itemId, quantity) => {
-  console.log(userId, itemId, quantity);
+export const sendUpdateQty = async (userId, cartItemId, quantity) => {
+  console.log(userId, cartItemId, quantity);
+
+  // siusti put requesta i /api/shop/cart/:userId
+
+  const ats = await axios.get(`${cartBaseUrl}/${userId}`);
+  return ats;
 };
 
 export const getCartCount = async (userId) => {
