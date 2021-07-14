@@ -405,11 +405,19 @@ select {
   }
 
   .main-nav {
-    display: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: min-height 1.2s;
+  }
+
+  .main-nav.open {
+    display: flex;
+    flex-direction: column;
+    max-height: 100px;
   }
 
   .you-may-like__container {
-    overflow: hidden;
+    overflow: 100%;
   }
 
   .you-may-like .shop-item {
