@@ -65,24 +65,13 @@ class ShopSingleItem extends Component {
   handleAddToCart = async () => {
     const { currentUserId, currentItem, selectedSize, selectedColor } = this.state;
     console.log('add to cart please');
-    const ats = await addToCart(currentUserId, {
-      title: currentItem.title,
-      image: currentItem.image,
-      itemId: currentItem._id,
-      color: selectedColor,
-      size: selectedSize,
-      quantity: 1,
-      sku: currentItem.sku,
-      price: currentItem.salePrice || currentItem.price,
-    });
+    const ats = await addToCart(currentUserId, currentItem);
     if (!ats) {
       toast.error('Error adding item');
     } else {
       toast.dark('Added to cart');
+      this.props.onCartCount();
     }
-    console.log('ats', ats);
-    // kazka kazka cia
-    this.props.onCartCount(currentUserId);
   };
 
   render() {
