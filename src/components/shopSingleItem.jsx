@@ -13,9 +13,7 @@ class ShopSingleItem extends Component {
       mainImage: '',
       images: [],
       currentItemId: '',
-      currentItem: {
-        sizeQty: [],
-      },
+      currentItem: {},
       selectedSize: 'small',
       selectedColor: 'green',
       currentUserId: '',
@@ -63,13 +61,6 @@ class ShopSingleItem extends Component {
     this.setState({ selectedColor: event.target.value });
     toast.dark('color changed');
   };
-
-  getQuantity() {
-    const { currentItem: item, selectedSize } = this.state;
-    if (!item.sizeQty.length) return;
-    const { quantity } = item.sizeQty.find((i) => i.size === selectedSize);
-    return quantity;
-  }
 
   handleAddToCart = async () => {
     const { currentUserId, currentItem, selectedSize, selectedColor } = this.state;
@@ -133,17 +124,14 @@ class ShopSingleItem extends Component {
                 <label htmlFor="sizes">Sizes</label>
                 <br />
                 <select onChange={this.handleSize} value={this.state.selectedSize} name="sizes" id="sizes">
-                  {item.sizeQty &&
-                    item.sizeQty.map((i) => (
-                      <option key={i._id} value={i.size}>
-                        {i.size}
-                      </option>
-                    ))}
+                  <option value="small">Small</option>
+                  <option value="medium">Medium</option>
+                  <option value="large">Large</option>
                 </select>
               </div>
               <div>
                 <h4>In stock </h4>
-                <p>{item.sizeQty && this.getQuantity()}</p>
+                <p>{item.quantity}</p>
               </div>
             </div>
             <Button onClick={this.handleAddToCart} outline>
