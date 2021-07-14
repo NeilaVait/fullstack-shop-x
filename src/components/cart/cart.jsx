@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { getCartItems, sendUpdateQty } from '../../utils/requests';
 import Button from '../common/button/button';
 import CartList from './cartList';
 
@@ -7,16 +8,43 @@ class Cart extends Component {
     super(props);
     this.state = {
       cartTotal: 0,
+      currentCart: [],
     };
   }
+
+  async componentDidMount() {
+    const cartItems = await getCartItems(this.getUserIdFromSession());
+    console.log(cartItems);
+    console.log('total', this.calcTotal(cartItems));
+    // patikrinti ar cart tuscias
+    if (Object.keys(cartItems).length === 0) return;
+    this.setState({ currentCart: cartItems, cartTotal: this.calcTotal(cartItems) });
+  }
+
+  getUserIdFromSession() {
+    const id = sessionStorage.getItem('loggedInUserId');
+    return id ? id : console.error('no id in session');
+  }
+
+  updateQuantity = (itemId, newQty) => {
+    console.log('updatequantity');
+    console.log(itemId, newQty);
+    // iskviesti is cartitem el
+    sendUpdateQty(this.getUserIdFromSession(), itemId, newQty);
+  };
+
+  calcTotal = (items) => {
+    return items.reduce((acc, cur) => acc + cur.quantity * (cur.salePrice || cur.price), 0);
+  };
+
   render() {
     return (
       <div>
-        <div className="cartList">
-          <CartList cartItems={this.props.cartItems} />
+        <div className="cartList mb-2">
+          <CartList onQuantity={this.updateQuantity} currentCart={this.state.currentCart} />
         </div>
         <div className="d-flex">
-          <div className="cart__instructions">
+          <div className="cart__instructions mb-2">
             <label htmlFor="instructions">Special instructions for seller</label>
             <br />
             <textarea name="" id="instructions" cols="30" rows="10"></textarea>
