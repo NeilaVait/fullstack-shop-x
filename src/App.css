@@ -236,6 +236,10 @@ textarea:focus-visible {
   margin-bottom: 0.2em;
 }
 
+.sold-out-img {
+  opacity: 0.6;
+}
+
 /* Single item page */
 
 .single__main-image {
