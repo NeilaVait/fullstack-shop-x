@@ -12,13 +12,17 @@ class Cart extends Component {
     };
   }
 
-  async componentDidMount() {
+  async getCurrentCartItems() {
     const cartItems = await getCartItems(this.getUserIdFromSession());
-    console.log(cartItems);
-    console.log('total', this.calcTotal(cartItems));
+    // console.log(cartItems);
+    // console.log('total', this.calcTotal(cartItems));
     // patikrinti ar cart tuscias
     if (Object.keys(cartItems).length === 0) return;
     this.setState({ currentCart: cartItems, cartTotal: this.calcTotal(cartItems) });
+  }
+
+  async componentDidMount() {
+    this.getCurrentCartItems();
   }
 
   getUserIdFromSession() {
@@ -26,15 +30,19 @@ class Cart extends Component {
     return id ? id : console.error('no id in session');
   }
 
-  updateQuantity = (itemId, newQty) => {
-    console.log('updatequantity');
+  updateQuantity = async (itemId, newQty) => {
+    // console.log('updatequantity');
     console.log(itemId, newQty);
     // iskviesti is cartitem el
-    sendUpdateQty(this.getUserIdFromSession(), itemId, newQty);
+    const updateOk = await sendUpdateQty(this.getUserIdFromSession(), itemId, newQty);
+    if (updateOk === true) {
+      console.log('ruosiames atnaujinti itemus, nes panasu kad pasikeite kiekis');
+      this.getCurrentCartItems();
+    }
   };
 
   calcTotal = (items) => {
-    return items.reduce((acc, cur) => acc + cur.quantity * (cur.salePrice || cur.price), 0);
+    return items.reduce((acc, cur) => acc + cur.quantity * (cur.salePrice || cur.price), 0).toFixed(2);
   };
 
   render() {
