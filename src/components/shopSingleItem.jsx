@@ -40,6 +40,12 @@ class ShopSingleItem extends Component {
     });
   }
 
+  async updateItemQuantityAfterAddToCart() {
+    const item = await getSingleItem(this.state.currentItem._id);
+    console.log(item);
+    this.setState({ currentItem: item });
+  }
+
   componentDidUpdate(prevProps, prevState) {
     const { currentUserId } = this.state;
     if (currentUserId !== sessionStorage.getItem('loggedInUserId')) {
@@ -71,6 +77,7 @@ class ShopSingleItem extends Component {
     } else {
       toast.dark('Added to cart');
       this.props.onCartCount();
+      this.updateItemQuantityAfterAddToCart();
     }
   };
 
