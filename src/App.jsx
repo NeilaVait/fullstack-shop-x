@@ -68,7 +68,7 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    console.log('app mounted');
+    // console.log('app mounted');
     this.logInUserIfInSession();
     // console.log('ar promisas ar data ', request.getCategories());
     const shopCopy = { ...this.state.shop };

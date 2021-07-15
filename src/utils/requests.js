@@ -57,13 +57,17 @@ export const getCartItems = async (userId) => {
 };
 
 // update cartitem qty
-export const sendUpdateQty = async (userId, cartItemId, quantity) => {
-  console.log(userId, cartItemId, quantity);
+export const sendUpdateQty = async (userId, cartItemId, newQty) => {
+  // console.log('sendUpdateQty');
+  // console.log(userId, cartItemId, newQty);
 
-  // siusti put requesta i /api/shop/cart/:userId
-
-  const ats = await axios.get(`${cartBaseUrl}/${userId}`);
-  return ats;
+  // siusti rq PUT /api/shop/cart/:userId
+  try {
+    const ats = await axios.put(`${cartBaseUrl}/${userId}`, { cartItemId, newQty });
+    console.log('ats', ats.data);
+  } catch (err) {
+    console.log('klaida sendUpdateQty funkcijoj', err.message);
+  }
 };
 
 export const getCartCount = async (userId) => {

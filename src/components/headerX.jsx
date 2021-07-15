@@ -13,7 +13,7 @@ class HeaderX extends Component {
   }
 
   componentDidMount() {
-    console.log(this.mainNavRef.current.scrollHeight);
+    // console.log(this.mainNavRef.current.scrollHeight);
     const currentStateNav = this.state.showNav;
     this.setState({
       showNav: !currentStateNav,
