@@ -55,6 +55,10 @@ h6 {
   width: 50%;
 }
 
+.opacity-8 {
+  opacity: 0.8;
+}
+
 /* spacing classes */
 
 .mb-1 {
@@ -234,10 +238,6 @@ textarea:focus-visible {
   font-size: 1em;
   font-weight: normal;
   margin-bottom: 0.2em;
-}
-
-.sold-out-img {
-  opacity: 0.6;
 }
 
 /* Single item page */
