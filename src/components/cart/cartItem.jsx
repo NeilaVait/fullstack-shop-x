@@ -1,22 +1,43 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../common/button/button';
+import { getSingleItem } from '../../utils/requests';
 
 class CartItem extends Component {
   state = {
-    qty: 1,
+    qty: 0,
     image: '',
-    total: 0,
+    total: null,
+    maxItemInStock: null,
   };
+
+  async getCurrentItemWarehouseStock() {
+    const currentItem = await getSingleItem(this.props.item.itemId);
+    return currentItem.quantity;
+  }
 
   getTotal() {
     return this.state.qty * this.props.item.price;
   }
 
+  fixMaxItemStock(newCartQuantity) {
+    const { qty: itemsInCart, maxItemInStock } = this.state;
+    // what is total item qty
+    const itemQtyCartAndWarehouse = +itemsInCart + maxItemInStock;
+    // if we try to set it to more return max
+    if (newCartQuantity > itemQtyCartAndWarehouse) {
+      // jei bandom ivesti daugiau nei turim krepselyje ir liko sandelyje tai grazinam maximalu kieki
+      return itemQtyCartAndWarehouse;
+    }
+    return newCartQuantity;
+  }
+
   handleQty = ({ target }) => {
-    target.value >= 0 && this.setState({ qty: target.value });
-    // cia iskviesti updquantity ir paduoti id ir nauja value
-    this.props.onQuantity(this.props.item._id, target.value);
+    if (target.value < 0) return;
+
+    this.setState({ qty: +this.fixMaxItemStock(target.value) });
+
+    this.props.onQuantity(this.props.item._id, this.fixMaxItemStock(target.value));
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -26,14 +47,15 @@ class CartItem extends Component {
   }
 
   componentDidMount() {
-    const { image, quantity } = this.props.item;
-    // dynamic import
-    // import(`../../static/shop/${image}1.jpg`).then((img) => {
-    //   console.log(img.default);
-    // });
-    const imgImported = require(`../../static/shop/${image}1.jpg`).default;
-    this.setState({ qty: quantity, image: imgImported, total: this.getTotal() });
+    (async () => {
+      const warehouseQty = await this.getCurrentItemWarehouseStock();
+      console.log(warehouseQty);
+      const { image, quantity } = this.props.item;
+      const imgImported = require(`../../static/shop/${image}1.jpg`).default;
+      await this.setState({ qty: quantity, image: imgImported, total: this.getTotal(), maxItemInStock: warehouseQty });
+    })();
   }
+
   render() {
     const { price, title, color, size } = this.props.item;
     return (
@@ -62,7 +84,7 @@ class CartItem extends Component {
         </div>
         <div className="cart-col">
           <h3 className="d-upto-800">Total</h3>
-          <h3 className="price-total">{+this.state.total.toFixed(2)} eur</h3>
+          <h3 className="price-total">{this.state.total && +this.state.total.toFixed(2)} eur</h3>
         </div>
       </div>
     );

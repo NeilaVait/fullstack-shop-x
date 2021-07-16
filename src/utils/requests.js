@@ -13,6 +13,7 @@ export const getCategories = async () => {
     console.log(err);
   }
 };
+
 export const getItems = async () => {
   try {
     const itemsResult = await axios.get(itemBaseUrl);
@@ -21,6 +22,7 @@ export const getItems = async () => {
     console.log(err);
   }
 };
+
 export const getSingleItem = async (singleItemId) => {
   try {
     const itemsResult = await axios.get(itemBaseUrl + '/' + singleItemId);
