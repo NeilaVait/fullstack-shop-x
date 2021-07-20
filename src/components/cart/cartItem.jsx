@@ -9,6 +9,7 @@ class CartItem extends Component {
     image: '',
     total: null,
     maxItemInStock: null,
+    loading: false,
   };
 
   /** gauti individualu kiek itemu ir irasyti ji i maxItemInStock
@@ -38,6 +39,7 @@ class CartItem extends Component {
   }
 
   handleQty = async ({ target }) => {
+    this.setState({ loading: true });
     if (target.value < 0) return;
     this.setState({ qty: this.fixMaxItemStock(target.value) });
 
@@ -46,7 +48,7 @@ class CartItem extends Component {
     if (updateSuccess) {
       console.log('updatedStock', await this.getCurrentWarehouseStock());
       const newStock = await this.getCurrentWarehouseStock();
-      this.setState({ maxItemInStock: newStock });
+      await this.setState({ maxItemInStock: newStock, loading: false });
     }
   };
 
@@ -100,7 +102,13 @@ class CartItem extends Component {
         </div>
         <div className="cart-col">
           <h3 className="d-upto-800">Quantity</h3>
-          <input className="cart-qty" type="number" value={this.state.qty} onChange={this.handleQty} />
+          <input
+            disabled={this.state.loading}
+            className="cart-qty"
+            type="number"
+            value={this.state.qty}
+            onChange={this.handleQty}
+          />
         </div>
         <div className="cart-col">
           <h3 className="d-upto-800">Total</h3>
