@@ -63,14 +63,22 @@ export const sendUpdateQty = async (userId, cartItemId, newQty) => {
   // console.log('sendUpdateQty');
   // console.log(userId, cartItemId, newQty);
 
-  // siusti rq PUT /api/shop/cart/:userId
   try {
     const ats = await axios.put(`${cartBaseUrl}/${userId}`, { cartItemId, newQty });
-    console.log('ats', ats.data);
+    console.log('updatedcart', ats.data.saveResult.cart);
+    console.table(ats.data.saveResult.cart);
     return true;
   } catch (err) {
     console.log('klaida sendUpdateQty funkcijoj', err.message);
   }
+};
+
+export const removeItem = async (userId, itemId) => {
+  console.log({ userId, itemId });
+  try {
+    const deleteResult = await axios.put(`${cartBaseUrl}/delete/${userId}`, { itemId });
+    return deleteResult.data;
+  } catch (err) {}
 };
 
 export const getCartCount = async (userId) => {

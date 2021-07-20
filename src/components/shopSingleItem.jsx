@@ -70,13 +70,17 @@ class ShopSingleItem extends Component {
 
   handleAddToCart = async () => {
     const { currentUserId, currentItem } = this.state;
+
     console.log('add to cart please');
+    // siusti i back end itema irasymui i cart
     const ats = await addToCart(currentUserId, currentItem);
+    // pasitikriname ar gavom atsakyma
     if (!ats) {
-      toast.error('Error adding item');
+      toast.error('error adding item');
     } else {
-      toast.dark('Added to cart');
+      toast.success('Item added to cart');
       this.props.onCartCount();
+      // atnaujinti item su updated quantity
       this.updateItemQuantityAfterAddToCart();
     }
   };

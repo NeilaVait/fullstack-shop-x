@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { getCartItems, sendUpdateQty } from '../../utils/requests';
+import { getCartItems, sendUpdateQty, removeItem } from '../../utils/requests';
 import Button from '../common/button/button';
 import CartList from './cartList';
+import { toast } from 'react-toastify';
 
 class Cart extends Component {
   constructor(props) {
@@ -11,6 +12,16 @@ class Cart extends Component {
       currentCart: [],
     };
   }
+
+  removeItemFromCart = async (cartItemId) => {
+    // console.log({ cartItemId });
+    const deleteResult = await removeItem(this.getUserIdFromSession(), cartItemId);
+    console.log(deleteResult.cart);
+    if (deleteResult.cart) {
+      this.getCurrentCartItems();
+      toast.error('Item removed from cart');
+    }
+  };
 
   async getCurrentCartItems() {
     const cartItems = await getCartItems(this.getUserIdFromSession());
@@ -32,12 +43,13 @@ class Cart extends Component {
 
   updateQuantity = async (itemId, newQty) => {
     // console.log('updatequantity');
-    console.log(itemId, newQty);
+    // console.log(itemId, newQty);
     // iskviesti is cartitem el
     const updateOk = await sendUpdateQty(this.getUserIdFromSession(), itemId, newQty);
     if (updateOk === true) {
       console.log('ruosiames atnaujinti itemus, nes panasu kad pasikeite kiekis');
-      this.getCurrentCartItems();
+      await this.getCurrentCartItems();
+      return true;
     }
   };
 
@@ -49,7 +61,11 @@ class Cart extends Component {
     return (
       <div>
         <div className="cartList mb-2">
-          <CartList onQuantity={this.updateQuantity} currentCart={this.state.currentCart} />
+          <CartList
+            removeItemFromCart={this.removeItemFromCart}
+            onQuantity={this.updateQuantity}
+            currentCart={this.state.currentCart}
+          />
         </div>
         <div className="d-flex">
           <div className="cart__instructions mb-2">
