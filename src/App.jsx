@@ -93,7 +93,7 @@ class App extends Component {
     // autetifikuoti useri
     sessionStorage.setItem('loggedInUserId', userId);
     sessionStorage.setItem('loggedInUserEmail', email);
-    toast.success(`You are now logged in as ${email}`);
+    toast.dark(`You are now logged in as ${email}`);
     await this.setState({ currentUser: { _id: userId, email: email } });
     this.handleCartCount();
   };
@@ -106,9 +106,11 @@ class App extends Component {
     //pass cartCount to shop
   };
 
-  selectCategory = (catTitle) => {
-    console.log('paspaudei ant', catTitle);
-    getItemsByCategory(catTitle);
+  selectCategory = async (catTitle, catId) => {
+    const itemsByCat = await getItemsByCategory(catTitle, catId);
+    const shopCopy = { ...this.state.shop };
+    shopCopy.items = itemsByCat;
+    await this.setState({ shop: shopCopy });
   };
 
   render() {
