@@ -78,7 +78,11 @@ class Shop extends Component {
                 />
               )}
             />
-            <Route exact path="/shop/cart" render={(props) => <Cart cartItems={cart} {...props} />} />
+            <Route
+              exact
+              path="/shop/cart"
+              render={(props) => <Cart onCartCount={this.props.onCartCount} cartItems={cart} {...props} />}
+            />
             <Route exact path="/shop" render={(props) => <ShopList items={items} {...props} />} />
           </main>
         </div>

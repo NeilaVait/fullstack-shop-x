@@ -78,7 +78,7 @@ class ShopSingleItem extends Component {
     if (!ats) {
       toast.error('error adding item');
     } else {
-      toast.success('Item added to cart');
+      toast.dark('Item added to cart');
       this.props.onCartCount();
       // atnaujinti item su updated quantity
       this.updateItemQuantityAfterAddToCart();

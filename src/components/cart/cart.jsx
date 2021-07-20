@@ -20,6 +20,7 @@ class Cart extends Component {
     if (deleteResult.cart) {
       this.getCurrentCartItems();
       toast.error('Item removed from cart');
+      await this.props.onCartCount();
     }
   };
 
