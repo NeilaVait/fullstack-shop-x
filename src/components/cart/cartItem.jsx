@@ -72,8 +72,11 @@ class CartItem extends Component {
     })();
   }
 
-  handleRemove = () => {
-    this.props.removeItemFromCart(this.props.item.itemId);
+  handleRemove = async () => {
+    const evt = { target: { value: 0 } };
+    await this.handleQty(evt);
+    console.log('deleting item');
+    await this.props.removeItemFromCart(this.props.item.itemId);
   };
 
   render() {
