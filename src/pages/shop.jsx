@@ -41,7 +41,11 @@ class Shop extends Component {
             <div className="categories">
               <ul>
                 {shopCategories.map((item) => (
-                  <li key={item._id} className="category-item">
+                  <li
+                    onClick={() => this.props.onSelectCategory(item.title, item.category)}
+                    key={item._id}
+                    className="category-item"
+                  >
                     {item.title}
                   </li>
                 ))}

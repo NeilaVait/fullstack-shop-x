@@ -8,7 +8,7 @@ import Home from './pages/home';
 import Shop from './pages/shop';
 import 'font-awesome/css/font-awesome.css';
 import Footer from './components/footer';
-import { getCategories, getItems, getCartCount } from './utils/requests';
+import { getCategories, getItems, getCartCount, getItemsByCategory } from './utils/requests';
 import Admin from './pages/admin';
 
 class App extends Component {
@@ -106,6 +106,11 @@ class App extends Component {
     //pass cartCount to shop
   };
 
+  selectCategory = (catTitle) => {
+    console.log('paspaudei ant', catTitle);
+    getItemsByCategory(catTitle);
+  };
+
   render() {
     const { navLinks, shop, currentUser, cartCount } = this.state;
     return (
@@ -119,6 +124,7 @@ class App extends Component {
               path="/shop"
               render={(props) => (
                 <Shop
+                  onSelectCategory={this.selectCategory}
                   cartCount={cartCount}
                   onCartCount={this.handleCartCount}
                   onLogin={this.handleLogin}
