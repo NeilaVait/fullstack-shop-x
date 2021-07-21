@@ -53,7 +53,6 @@ export const getUsers = async () => {
 export const addToCart = async (userId, shopItemObj) => {
   try {
     const ats = await axios.post(`${cartBaseUrl}/${userId}`, shopItemObj);
-    console.log(ats.data);
     return ats.data;
   } catch (err) {
     throw new Error(err);
@@ -74,8 +73,8 @@ export const sendUpdateQty = async (userId, cartItemId, newQty) => {
 
   try {
     const ats = await axios.put(`${cartBaseUrl}/${userId}`, { cartItemId, newQty });
-    console.log('updatedcart', ats.data.saveResult.cart);
-    console.table(ats.data.saveResult.cart);
+    // console.log('updatedcart', ats.data.saveResult.cart);
+    // console.table(ats.data.saveResult.cart);
     return true;
   } catch (err) {
     console.log('klaida sendUpdateQty funkcijoj', err.message);

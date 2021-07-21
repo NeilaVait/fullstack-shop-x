@@ -16,7 +16,6 @@ class Cart extends Component {
   removeItemFromCart = async (cartItemId) => {
     // console.log({ cartItemId });
     const deleteResult = await removeItem(this.getUserIdFromSession(), cartItemId);
-    console.log(deleteResult.cart);
     if (deleteResult.cart) {
       this.getCurrentCartItems();
       toast.error('Item removed from cart');
@@ -26,8 +25,6 @@ class Cart extends Component {
 
   async getCurrentCartItems() {
     const cartItems = await getCartItems(this.getUserIdFromSession());
-    // console.log(cartItems);
-    // console.log('total', this.calcTotal(cartItems));
     // patikrinti ar cart tuscias
     if (Object.keys(cartItems).length === 0) return;
     this.setState({ currentCart: cartItems, cartTotal: this.calcTotal(cartItems) });
@@ -43,12 +40,9 @@ class Cart extends Component {
   }
 
   updateQuantity = async (itemId, newQty) => {
-    // console.log('updatequantity');
-    // console.log(itemId, newQty);
-    // iskviesti is cartitem el
     const updateOk = await sendUpdateQty(this.getUserIdFromSession(), itemId, newQty);
     if (updateOk === true) {
-      console.log('ruosiames atnaujinti itemus, nes panasu kad pasikeite kiekis');
+      // console.log('ruosiames atnaujinti itemus, nes panasu kad pasikeite kiekis');
       await this.getCurrentCartItems();
       return true;
     }

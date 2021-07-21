@@ -46,7 +46,7 @@ class CartItem extends Component {
     // cia iskviesti updateQuantity ir paduoti id ir nauja value
     const updateSuccess = await this.props.onQuantity(this.props.item._id, this.fixMaxItemStock(target.value));
     if (updateSuccess) {
-      console.log('updatedStock', await this.getCurrentWarehouseStock());
+      // console.log('updatedStock', await this.getCurrentWarehouseStock());
       const newStock = await this.getCurrentWarehouseStock();
       await this.setState({ maxItemInStock: newStock, loading: false });
     }
@@ -55,10 +55,6 @@ class CartItem extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevState.qty !== this.state.qty) {
       this.setState({ total: this.getTotal() });
-      (async () => {
-        const warehouseQty = await this.getCurrentWarehouseStock();
-        console.log('warehouseQty', warehouseQty);
-      })();
     }
   }
 
@@ -75,7 +71,6 @@ class CartItem extends Component {
   handleRemove = async () => {
     const evt = { target: { value: 0 } };
     await this.handleQty(evt);
-    console.log('deleting item');
     await this.props.removeItemFromCart(this.props.item.itemId);
   };
 

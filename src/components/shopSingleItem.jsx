@@ -42,14 +42,12 @@ class ShopSingleItem extends Component {
 
   async updateItemQuantityAfterAddToCart() {
     const item = await getSingleItem(this.state.currentItem._id);
-    console.log(item);
     this.setState({ currentItem: item });
   }
 
   componentDidUpdate(prevProps, prevState) {
     const { currentUserId } = this.state;
     if (currentUserId !== sessionStorage.getItem('loggedInUserId')) {
-      console.log('update');
       this.setCurrentUserId();
     }
   }
@@ -71,7 +69,7 @@ class ShopSingleItem extends Component {
   handleAddToCart = async () => {
     const { currentUserId, currentItem } = this.state;
 
-    console.log('add to cart please');
+    // console.log('add to cart please');
     // siusti i back end itema irasymui i cart
     const ats = await addToCart(currentUserId, currentItem);
     // pasitikriname ar gavom atsakyma
