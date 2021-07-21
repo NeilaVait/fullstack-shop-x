@@ -113,6 +113,13 @@ class App extends Component {
     await this.setState({ shop: shopCopy });
   };
 
+  getAllItems = async () => {
+    const allItems = await getItems();
+    const shopCopy = { ...this.state.shop };
+    shopCopy.items = allItems;
+    this.setState({ shop: shopCopy });
+  };
+
   render() {
     const { navLinks, shop, currentUser, cartCount } = this.state;
     return (
@@ -126,6 +133,7 @@ class App extends Component {
               path="/shop"
               render={(props) => (
                 <Shop
+                  getAllItems={this.getAllItems}
                   onSelectCategory={this.selectCategory}
                   cartCount={cartCount}
                   onCartCount={this.handleCartCount}

@@ -40,6 +40,9 @@ class Shop extends Component {
           <aside className="categories-aside">
             <div className="categories">
               <ul>
+                <li onClick={() => this.props.getAllItems()} className="category-item">
+                  All products
+                </li>
                 {shopCategories.map((item) => (
                   <li
                     onClick={() => this.props.onSelectCategory(item.title, item._id)}

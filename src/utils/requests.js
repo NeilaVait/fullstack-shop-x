@@ -16,7 +16,7 @@ export const getCategories = async () => {
 
 export const getItemsByCategory = async (catTitle, catId) => {
   try {
-    const itemsResult = await axios.get(`http://localhost:4000/api/shop/items/${catTitle}/${catId}`);
+    const itemsResult = await axios.get(`http://localhost:4000/api/shop/items/category/${catId}`);
     return itemsResult.data;
   } catch (err) {
     console.log(err);
